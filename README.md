@@ -1,108 +1,307 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Sea & Shore
+___
+![Responsive Mockup of site]()
 
-Welcome timmorrisdev,
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+# Project Synopsis
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
 
-## Gitpod Reminders
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-`python3 -m http.server`
+[See the live site here!]()
 
-A blue button should appear to click: _Make Public_,
+___
+# User Experience (UX)
 
-Another blue button should appear to click: _Open Browser_.
+## User Stories
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### Unregistered user goals
 
-A blue button should appear to click: _Make Public_,
+- As an unregistered user, I should be able to see what the store is selling and easily understand the kind of products on offer.
+- As an unregistered user, I should be able to navigate through the website easily to explore the different features.
+- As an unregistered user, I should be able to navigate through all the products sold in the store using clear and intuitive menus and categories.
+- As an unregistered user, I should be able to search the product range.
+- As an unregistered user, I should be able to sort any product results by price, rating, or brand.
+- As an unregistered user, I should be able to add items to my basket and receive real-time, useful feedback when I interact with the website.
+- As an unregistered user, I should be able to edit the items in my basket and receive feedback when something has changed.
+- As an unregistered user, I should be able to check out as a guest user of the website.
+- As an unregistered user, I should be able to receive email confirmation of my order. 
+- As an unregistered user, I should be able to sign up and store my information to a personal profile in order to streamline future visits.
 
-Another blue button should appear to click: _Open Browser_.
+### Registered user goals
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+- As a registered user, I should be able to log in to my profile to make my experience more personal.
+- As a registered user, I should be able save items to a wish-list for future purchase consideration. 
+- As a registered user, I should be able to edit my default delivery and payment information. 
+- As a registered user, I should be able to see and review my past orders.
+- As a registered user, I should be able to rate and leave reviews for products on the site.
+- As a registered user, I should be able to contact the business owner with any queries I might have.
 
-To log into the Heroku toolbelt CLI:
+### Future Dev
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+- As a registered user, I should be able to read about the latest products being tested by the business team on the blog.
+- As a registered user, I should be able to leave comments on the blog posts to offer my opinions / advice to other users of the website. 
+- As a registered user, I should be able to have products recommended to me based on my order history.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Admin
 
-------
+- As an admin user, I should be able to add, edit and delete items from the product range.
+- As an admin user, I should have access to an admin section to see details of users and orders.
+- As an admin user, I should be able to offer incentive to make larger purchases by offering free delivery over a set amount.
 
-## Release History
+- As an admin user, I should be able to interact with my frequent customers using the blog and comments section and offer advice and real-world testing of selected products in the store.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Design
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### Wireframes
+- [Landing Page]()
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Design Decisions Different to Wireframes
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### Colour Scheme
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Fonts
+- Montserrat
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## Data Models
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## Features
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Feature....
 
-------
 
-## FAQ about the uptime script
+### Other Features
+- Responsive across all devices and screen sizes.
+- Adaptive to modify content shown to be appropriate for user device or screen size.
 
-**Why have you added this script?**
+### Future Development Opportunities
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+___
+# Technologies Used
+## Languages Used
+- [Python3](https://www.python.org/downloads/)
+- [JavaScript](https://www.javascript.com/)
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
 
-**How will this affect me?**
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+## Frameworks, Libraries & Programs Used
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+- [Django]()
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+- [jQuery](https://jquery.com/)
+    - I used jQuery in my Javascript code for the song remixer game. I mostly made use of event handlers to integrate user interaction with the site with my Javascript functions controlling the features offered to the user.
+    - jQuery was also used as part of Materialize and is used for Javascript plugins such as the modals.
 
-**So….?**
+- [Google Fonts](https://fonts.google.com/)
+    - Google Fonts was used to import the 'Montserrat', and 'Tourney' fonts, which were used throughout the site.
+- [Font Awesome](https://fontawesome.com/)
+    - Used to source images for the transport section of the remixer.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+- [Git](https://git-scm.com/)
+    - Git was used for version control using the terminal in Gitpod to 'add' and 'commit' to Git and to push changes to the GitHub repository using 'git push'.
 
-**Can I opt out?**
+- [Gitpod](https://gitpod.io/)
+    - Gitpod.io was used as the primary development environment when coding for the site. It's terminal was used to preview the site via temporary server, and for version control using Git commands.
+- [Github](https://github.com/)
+    - GitHub was used to store the code pushed from Gitpod and as deployment for the [published site.](https://timmorrisdev.github.io/MS2-song-remixer/)
+- [Balsamiq](https://balsamiq.com/)
+    - Balsamiq was used to create the wireframes for the site while in the 'skeleton' stage of my UX process.
+- [Autoprefixer](http://autoprefixer.github.io/)
+    - Autoprefixer was used in the final stage of development to parse CSS code and add vendor prefixes.
+- [Coloors.co](https://coolors.co/)
+    - Used to source colour palettes used throughout the site.
+- [Am I Responsive?](http://ami.responsivedesign.is/#)
+    - Used to check responsiveness across different device sizes. 
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+___
+# Testing
+## Responsiveness Testing
+I used google dev tools throughout the development process to check responsiveness across different screen sizes. 
 
+I was also sure to deploy the site to Heroku early in development to allow for review of the live site on various devices throughout the process.
+
+## W3C Markup, CSS Validation & JSHint Validation
+I used the W3C Markup, CSS Validator and JSHint Validator Services to check and validate each page throughout the site to check for errors. 
+### [Markup Validation Service](https://validator.w3.org/)
+The validator found the following issues for me to address.
+
+### [CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+My CSS file style.css passed through the w3 validator with no errors.
+
+### [JSHint Validation Service](https://jshint.com/)
+My JavaScript file script.js passed through the validator with no errors. 
+
+### [PEP8 check](http://pep8online.com/checkresult)
+
+Other than those issues, my python code was fully PEP8 compliant.
+
+## Lighthouse Testing
+
+## Testing UX User Stories
+
+### Unregistered user goals
+
+### Registered user goals
+
+### Admin user goals
+
+## Peer Code Review
+
+
+## Cross-Browser/Device Testing
+I tested the site across multiple devices using different browsers.
+- Browsers tested
+    - Chrome
+    - Safari
+    - Firefox
+
+- Devices tested
+    - Mac Pro w/ Dell 24 inch monitor
+    - Macbook Pro 15 inch
+    - iPhone 12
+    - iPad air 2
+
+## Known Bugs / Issues
+
+
+# Deployment
+
+The project was deployed to Heroku and can be found [here]()
+
+
+## Forking the repository in GitHub
+Forking the repository creates a copy of the original repository in your own account to allow changes to be made without affecting the original repository.
+1. Log in to GitHub and navigate to the GitHub repository page [here](https://github.com/TimMorrisDev/MS2-song-remixer).
+2. In the top-right of the page, below the user avatar, locate the "fork" button.
+3. Click the "fork" button and you should now have a copy of the repository in your own account. 
+
+## Making a Local Clone
+Details of how to make a local copy of the GutHub repository can be found [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository). To clone using HTTPS follow these steps.
+1. Navigate to the GitHub repository [here](https://github.com/TimMorrisDev/MS2-song-remixer).
+2. Click the "Code" drop-down menu above the list of files.
+3. Copy the HTTPS address to the clipboard using the button provided.
+4. Open Terminal.
+5. Change the current directory to the location you wish to copy the directory.
+6. Type 'git clone' and then paste the HTTPS url you copied earlier. 
+7. Press enter and your local clone will be created. 
+
+## Create MongoDB database
+My data was stored in a [MongoDB](https://cloud.mongodb.com/) collection set up using the following steps.
+- Sign up / Sign In to mongodb and create a new cluster.
+- Select 'collections' from the cluster dashboard.
+- Click 'create database', and create database name and collection name.
+- Click 'create collection' for any additional data collections needed for the app.
+
+## Create Flask Application and install pymongo
+In the terminal type the following commands to install the required packages:
+    
+- Install Flask
+    ```
+    pip3 install Flask
+    ```
+
+- Install PyMongo
+    ```
+    pip3 install pymongo
+    ```
+- Install flask-pymongo
+    ```
+    pip3 install flask-pymongo
+    ```
+- Install dnspython
+    ```
+    pip3 install dnspython
+
+Setup app
+- Create `app.py` and `env.py` using the terminal
+    ```
+    touch app.py
+    touch env.py
+    ```
+
+- Create gitignore file using the terminal to keep `env.py `from being pushed to github
+    ```python
+    touch env.py
+    ```
+
+- Within the gitignore file add `env.py` and `__pycache__/`.
+    ```python
+    env.py
+    __pycache__/
+    ```
+
+Set up environment variables and flask instance
+- Within `env.py` add the following environment variables:
+
+    ```python
+    os.environ.setdefault("IP", "0.0.0.0")
+    os.environ.setdefault("PORT", "5000")
+    os.environ.setdefault("SECRET_KEY", "YOUR SECRET KEY")
+    os.environ.setdefault("MONGO_URI", "YOUR MONGO URI")
+    os.environ.setdefault("MONGO_DBNAME", "YOUR DATABASE NAME")
+    ```
+
+    - I used [randomkeygen]() to generate my secret key. 
+    - To get your mongodb URI, go to your cluster dashboard and hit connect. Select your version of python and copy the string to the clipboard.
+
+Within `app.py` import os, Flask and environment variables and create instance of Flask and PyMongo.
+```python
+    import os
+    from flask import Flask
+  
+    if os.path.exists("env.py"):
+        import env
+    
+    app = Flask(__name__)
+
+    app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+    app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+    app.secret_key = os.environ.get("SECRET_KEY")
+
+    mongo = PyMongo(app)
 ```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
 
-**Anything more?**
+## Setting up the heroku app
+In order to deploy the app via [heroku](https://dashboard.heroku.com/apps), the following steps must be taken. 
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+- In the terminal, create requirements.txt and Procfile for Heroku to run correctly
+    ```
+    pip3 freeze --local > requirements.txt
+    ```
+    ```
+    echo web: python app.py > Procfile
+    ```
+- Push your files to gitHub
+- Navigate to [heroku](https://heroku.com/) and create a new app in your dashboard.
+- Assign an app name and region and hit 'create app'.
+- In your dashboard, click to connect your gitHub and then locate the correct repository to be deployed.
+- Click on the settings tab and then click 'reveal config vars' in order to input the data hidden in `env.py` as follows.
+        
+        IP                  0.0.0.0
+        MONGO.DBNAME        sustainable_supper_club
+        MONGO_URI           MONGO URI copied from env.py
+        PORT                5000
+        SECRET_KEY          SECRET_KEY copied from env.py
 
----
+- Click 'enable automatic deploy' in the app dashboard.
+- Click view to see the deployed site!
 
-Happy coding!
+___
+# Credits
+## Code
+
+## Content
+
+## Media
+
+## Acknowledgements
+- Thank you to my mentor, Rohit Sharma for all your guidance and support.
+- Thank you to the Code Institute tutor support and Slack community for all the help throughout this project.
