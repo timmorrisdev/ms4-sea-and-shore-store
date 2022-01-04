@@ -20,7 +20,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
-
   {% endblock %}
 
   {% block extra_css %}{% endblock %}
@@ -41,7 +40,7 @@
 
   {% block extra_js %}{% endblock %}
 
-  <title>Boutique Ado
+  <title>Sea and Shore
     {% block extra_title %}{% endblock %}
   </title>
 </head>
@@ -52,8 +51,8 @@
       <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
         <a href="{% url 'home' %}" class="nav-link main-logo-link">
           <h2 class="logo-font text-black my-0">
-            <strong>Boutique</strong>
-            Ado
+            <strong>Sea and Shore</strong>
+
           </h2>
         </a>
       </div>
@@ -158,16 +157,17 @@
   </div>
   {% endif %}
 
-  {% block page_header %}{% endblock %}
+  {% block page_header %}
+  {% endblock %}
 
-  {% block content %}{% endblock %}
+  {% block content %}
+  {% endblock %}
 
   {% block postloadjs %}
   <script type="text/javascript">
     $('.toast').toast('show');
   </script>
   {% endblock %}
-
 
 </body>
 
