@@ -22,7 +22,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     ''' Model for store products '''
-    
+
     code = models.CharField(max_length=50,
                             null=True,
                             blank=True)
