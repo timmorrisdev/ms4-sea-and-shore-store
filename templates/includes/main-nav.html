@@ -8,15 +8,28 @@
         </li>
 
         <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Products
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
+                <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
+                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
+                <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="hardware-link"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Hardware
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="hardware-link">
-                <a href="" class="dropdown-item">Surfboards</a>
-                <a href="" class="dropdown-item ">Paddleboards</a>
-                <a href="" class="dropdown-item ">Accessories</a>
-                <a href="" class="dropdown-item">Wetsuits</a>
+                <a href="{% url 'products' %}?category=surfboards" class="dropdown-item">Surfboards</a>
+                <a href="{% url 'products' %}?category=paddle_boards" class="dropdown-item ">Paddleboards</a>
+                <a href="{% url 'products' %}?category=watersport_accessories" class="dropdown-item ">Accessories</a>
+                <a href="{% url 'products' %}?category=wetsuits" class="dropdown-item">Wetsuits</a>
             </div>
         </li>
 
@@ -26,11 +39,11 @@
                 Clothing
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a href="" class="dropdown-item">Jackets</a>
-                <a href="" class="dropdown-item ">Hoodies / Knitwear</a>
-                <a href="" class="dropdown-item ">Jeans / Trousers</a>
-                <a href="" class="dropdown-item">Footwear</a>
-                <a href="" class="dropdown-item">Beach</a>
+                <a href="{% url 'products' %}?category=jackets" class="dropdown-item">Jackets</a>
+                <a href="{% url 'products' %}?category=hoodies_knitwear" class="dropdown-item ">Hoodies / Knitwear</a>
+                <a href="{% url 'products' %}?category=jeans_trousers" class="dropdown-item ">Jeans / Trousers</a>
+                <a href="{% url 'products' %}?category=footwear" class="dropdown-item">Footwear</a>
+                <a href="{% url 'products' %}?category=beach" class="dropdown-item">Beach</a>
             </div>
         </li>
 
@@ -40,11 +53,9 @@
                 Outdoor / Lifestyle
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="outdoor-lifestyle-link">
-                <a href="" class="dropdown-item">Jackets</a>
-                <a href="" class="dropdown-item ">Hoodies / Knitwear</a>
-                <a href="" class="dropdown-item ">Jeans / Trousers</a>
-                <a href="" class="dropdown-item">Footwear</a>
-                <a href="" class="dropdown-item">Beach</a>
+                <a href="{% url 'products' %}?category=outdorr_equipment" class="dropdown-item">Outdoor Equipment</a>
+                <a href="{% url 'products' %}?category=camping" class="dropdown-item ">Camping</a>
+                <a href="{% url 'products' %}?category=tech_gadgets" class="dropdown-item ">Tech / Gadgets</a>
             </div>
         </li>
 
