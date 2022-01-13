@@ -26,8 +26,8 @@ SECRET_KEY = os.environ.get('MS4_SECRET_KEY', '')
 # SECRET_KEY = 'django-insecure-5m%s5p+%%ja-f19!ec-u&&9li8($gac517@344ob4+tfkw*(_0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = 'DEVELOPMENT' in os.environ
+# DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['sea-and-shore-store.herokuapp.com', 'localhost']
 
