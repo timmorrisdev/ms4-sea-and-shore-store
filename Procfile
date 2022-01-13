@@ -1,0 +1,1 @@
+web: gunicorn sea_and_shore.wsgi:application
