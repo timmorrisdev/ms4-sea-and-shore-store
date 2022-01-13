@@ -56,6 +56,9 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
+
+            print(order_form)
+
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
@@ -70,6 +73,9 @@ def checkout(request):
                             product=product,
                             quantity=item_data,
                         )
+
+                        print(order_line_item)
+
                         order_line_item.save()
                     else:
                         for size, quantity in item_data['items_by_size'].items():
@@ -79,6 +85,9 @@ def checkout(request):
                                 quantity=quantity,
                                 product_size=size,
                             )
+
+                            print(order_line_item)
+
                             order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
