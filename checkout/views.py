@@ -56,7 +56,7 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-
+            print('order form is valid')
             print(order_form)
 
             order = order_form.save(commit=False)
@@ -73,7 +73,7 @@ def checkout(request):
                             product=product,
                             quantity=item_data,
                         )
-
+                        print('line item no size')
                         print(order_line_item)
 
                         order_line_item.save()
@@ -86,6 +86,7 @@ def checkout(request):
                                 product_size=size,
                             )
 
+                            print('line item with size')
                             print(order_line_item)
 
                             order_line_item.save()
