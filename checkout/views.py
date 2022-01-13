@@ -53,7 +53,7 @@ def checkout(request):
         if order_form.is_valid():
 
             print('order form is valid')
-            print(order_form)
+            
 
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
@@ -70,7 +70,7 @@ def checkout(request):
                             quantity=item_data,
                         )
                         print('line item no size')
-                        print(order_line_item)
+                        
 
                         order_line_item.save()
                     else:
@@ -83,7 +83,7 @@ def checkout(request):
                             )
 
                             print('line item with size')
-                            print(order_line_item)
+                            
 
                             order_line_item.save()
                 except Product.DoesNotExist:
