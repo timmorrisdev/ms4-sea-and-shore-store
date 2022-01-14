@@ -19,6 +19,14 @@ body {
     width: 1.5rem;
 }
 
+.transition-example {
+    transition: all .5s ease-in-out;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+}
+
 .logo-font {
     text-transform: uppercase;
 }
@@ -174,7 +182,17 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
+.bg-white-op {
+    background: #ffffffab;
+}
+
 /* Allauth form formatting */
+
+.allauth-form-inner-content {
+    background: #ffffffeb;
+    padding: 1rem 1rem;
+    border: black solid 1px;
+}
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */
@@ -256,6 +274,20 @@ input[name='q']::placeholder {
     border-radius: 0;
 }
 
+/* -------------------------------- Product Cards */
+
+.product-card {
+    background: #ffffffeb;
+    border: black solid 1px;
+}
+
+.product-container {
+    overflow: hidden;
+}
+
+/* .dropdown:hover>.dropdown-menu {
+    display: block;
+  } */
 
 /* -------------------------------- Media Queries */
 
