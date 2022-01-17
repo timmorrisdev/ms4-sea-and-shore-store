@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .models import Product, Category
+from .models import Product, Category, ProductVariations
 from .forms import ProductForm, VariationForm
 
 
@@ -170,3 +170,17 @@ def add_product_variation(request, product_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_product_variation(request, variation_id):
+    """ Delete product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    variation = get_object_or_404(ProductVariations, pk=variation_id)
+    product_id = variation.product.id
+    variation.delete()
+    messages.success(request, "Variation deleted!")
+    return redirect(reverse('add_product_variation', args=[product_id]))

@@ -16,8 +16,6 @@
         <div class="col-12 col-md-6">
             <hr>
             <h2 class="logo-font mb-4">Product Management</h2>
-            <!-- <h5 class="text-muted">Add a Product</h5>
-                <hr> -->
         </div>
     </div>
     <div class="row">
@@ -25,7 +23,7 @@
             <h5 class="text-muted">Add a Product</h5>
             <hr>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="d-none d-md-block col-md-6">
             <h5 class="text-muted">Product Variations</h5>
             <hr>
         </div>
@@ -51,6 +49,10 @@
             </form>
         </div>
         <div class="col-12 col-md-6">
+
+            <h5 class="text-muted d-md-none">Product Variations</h5>
+            <hr class="d-md-none">
+
             {% if product.productvariations_set.all %}
             <table class="table table-sm">
                 <thead>
