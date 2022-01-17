@@ -289,6 +289,10 @@ input[name='q']::placeholder {
     display: block;
   } */
 
+.variations-table {
+    border-top: none !important;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

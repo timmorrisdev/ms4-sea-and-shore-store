@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category
-from .forms import ProductForm
+from .forms import ProductForm, VariationForm
 
 
 def all_products(request):
@@ -138,3 +138,35 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, "Product deleted!")
     return redirect(reverse('products'))
+
+
+@login_required
+def add_product_variation(request, product_id):
+    """ Add a variation to the product """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == 'POST':
+        form = VariationForm(request.POST, request.FILES)
+        if form.is_valid():
+            variation = form.save(commit=False)
+            variation.product = product
+            variation.save()
+            messages.success(request, 'Successfully added product variation!')
+            return redirect(reverse('add_product_variation', args=[product_id]))
+        else:
+            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+    else:
+        form = VariationForm()
+
+
+    template = 'products/add_product_variation.html'
+    context = {
+        'form': form,
+        'product': product
+    }
+
+    return render(request, template, context)

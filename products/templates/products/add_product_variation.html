@@ -16,25 +16,14 @@
         <div class="col-12 col-md-6">
             <hr>
             <h2 class="logo-font mb-4">Product Management</h2>
-            <!-- <h5 class="text-muted">Add a Product</h5>
-                <hr> -->
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <h5 class="text-muted">Add a Product</h5>
+            <h5 class="text-muted">Add Product Variation</h5>
             <hr>
         </div>
-        <div class="col-12 col-md-6">
-            <h5 class="text-muted">Product Variations</h5>
-            <hr>
-        </div>
-
     </div>
 
     <div class="row">
         <div class="col-12 col-md-6">
-            <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2"
+            <form method="POST" action="{% url 'add_product_variation' product.id %}" class="form mb-2"
                 enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
@@ -44,12 +33,20 @@
                 {{ field }}
                 {% endif %}
                 {% endfor %}
+
+
+
+
+
                 <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
-                    <button class="btn btn-black rounded-0" type="submit">Update Product</button>
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'edit_product' product.id %}">Back to
+                        Product</a>
+                    <button class="btn btn-black rounded-0" type="submit">Add Product Variation</button>
                 </div>
-            </form>
+
         </div>
+        </form>
+
         <div class="col-12 col-md-6">
             {% if product.productvariations_set.all %}
             <table class="table table-sm">
@@ -77,12 +74,6 @@
             {% else %}
             <p>No variations of this product found.</p>
             {% endif %}
-
-            <div class="text-right">
-                <a class="btn btn-black rounded-0" href="{% url 'add_product_variation' product.id %}">Add Product
-                    Variation</a>
-
-            </div>
         </div>
     </div>
 </div>
