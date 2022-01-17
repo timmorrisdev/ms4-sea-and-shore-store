@@ -39,6 +39,7 @@ class Product(models.Model):
                                  null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
+    ''' Override default object name return '''
     def __str__(self):
         return self.name
 
@@ -47,6 +48,7 @@ VARIATION_CATEGORIES = (
     ('size', 'size'),
     ('colour', 'colour')
 )
+
 
 class ProductVariations(models.Model):
     ''' Model for product variations '''
@@ -57,3 +59,7 @@ class ProductVariations(models.Model):
     image = models.ImageField(null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2,
                                 null=True, blank=True)
+
+    ''' Override default object name return '''
+    def __str__(self):
+        return self.name

@@ -29,18 +29,18 @@ def add_to_bag(request, item_id):
             if size in bag[item_id]['items_by_size'].keys():
                 bag[item_id]['items_by_size'][size] += quantity
                 messages.success(request,
-                                 (f'Updated size {size.upper()} '
+                                 (f'Updated size {size.capitalize()} '
                                   f'{product.name} quantity to '
                                   f'{bag[item_id]["items_by_size"][size]}'))
             else:
                 bag[item_id]['items_by_size'][size] = quantity
                 messages.success(request,
-                                 (f'Added size {size.upper()} '
+                                 (f'Added size {size.capitalize()} '
                                   f'{product.name} to your bag'))
         else:
             bag[item_id] = {'items_by_size': {size: quantity}}
             messages.success(request,
-                             (f'Added size {size.upper()} '
+                             (f'Added size {size.capitalize()} '
                               f'{product.name} to your bag'))
     else:
         if item_id in list(bag.keys()):
@@ -62,6 +62,7 @@ def adjust_bag(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     size = None
+
     if 'product_size' in request.POST:
         size = request.POST['product_size']
     bag = request.session.get('bag', {})
@@ -70,7 +71,7 @@ def adjust_bag(request, item_id):
         if quantity > 0:
             bag[item_id]['items_by_size'][size] = quantity
             messages.success(request,
-                             (f'Updated size {size.upper()} '
+                             (f'Updated size {size.capitalize()} '
                               f'{product.name} quantity to '
                               f'{bag[item_id]["items_by_size"][size]}'))
         else:
@@ -78,7 +79,7 @@ def adjust_bag(request, item_id):
             if not bag[item_id]['items_by_size']:
                 bag.pop(item_id)
             messages.success(request,
-                             (f'Removed size {size.upper()} '
+                             (f'Removed size {size.capitalize()} '
                               f'{product.name} from your bag'))
     else:
         if quantity > 0:
@@ -111,7 +112,7 @@ def remove_from_bag(request, item_id):
             if not bag[item_id]['items_by_size']:
                 bag.pop(item_id)
             messages.success(request,
-                             (f'Removed size {size.upper()} '
+                             (f'Removed size {size.capitalize()} '
                               f'{product.name} from your bag'))
         else:
             bag.pop(item_id)

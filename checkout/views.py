@@ -51,6 +51,7 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid(): 
+            print('order form valid')
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
@@ -59,6 +60,7 @@ def checkout(request):
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
+                    print('product in order')
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
