@@ -26,11 +26,11 @@ class Product(models.Model):
     code = models.CharField(max_length=50,
                             null=True,
                             blank=True)
-    name = models.CharField(max_length=254)
+    name = models.CharField(max_length=120)
     description = models.TextField()
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    brand = models.CharField(max_length=254)
+    brand = models.CharField(max_length=120)
     category = models.ForeignKey('Category',
                                  null=True,
                                  blank=True,
@@ -41,3 +41,19 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+VARIATION_CATEGORIES = (
+    ('size', 'size'),
+    ('colour', 'colour')
+)
+
+class ProductVariations(models.Model):
+    ''' Model for product variations '''
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    category = models.CharField(max_length=120, choices=VARIATION_CATEGORIES,
+                                default='size')
+    name = models.CharField(max_length=120)
+    image = models.ImageField(null=True, blank=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2,
+                                null=True, blank=True)
