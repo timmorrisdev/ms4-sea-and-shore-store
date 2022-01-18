@@ -82,7 +82,7 @@
                         </div>
                         <div class="card-footer bg-white-op pt-0 border-0 text-left">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-8">
                                     <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
                                     {% if product.category %}
                                     <p class="small mt-1 mb-0">
@@ -99,12 +99,28 @@
                                     <small class="text-muted">No Rating</small>
                                     {% endif %}
                                     {% if request.user.is_superuser %}
+                                    <br>
                                     <small class="ml-3">
                                         <a href="{% url 'edit_product' product.id %}">Edit</a> |
                                         <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                                     </small>
                                     {% endif %}
 
+                                </div>
+                                <div class="col-4 d-flex align-items-center justify-content-center">
+                                    <a href="{% url 'add_to_wishlist' product.id %}">
+                                        {% if product not in request.user.userwishlist.products.all %}
+                                        <div class="text-black wishlist-icon" title="Add to wishlist">
+                                            <i class="far fa-star fa-3x"></i>
+                                        </div>
+                                        {% else %}
+                                        <div class="text-black wishlist-icon" title="Remove from wishlist">
+                                            <i class="fas fa-star fa-3x"></i>
+                                        </div>
+                                        {% endif %}
+
+                                        <!-- <span class="text-uppercase">Add to wishlist</span> -->
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -171,5 +187,14 @@
             window.location.replace(currentUrl);
         }
     })
+</script>
+
+<script>
+    $('.wishlist-icon').tooltip({
+        show: {
+            effect: "fade",
+            duration: 800
+        }
+    });
 </script>
 {% endblock %}

@@ -26,6 +26,7 @@
         </div>
     </div>
     <div class="row">
+        {% if wishlist.products.all %}
         {% for product in wishlist.products.all %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100 product-card bg-white-op">
@@ -91,6 +92,10 @@
         </div>
         {% endif %}
         {% endfor %}
+
+        {% else %}
+        <p>No wishlist</p>
+        {% endif %}
     </div>
 
 
