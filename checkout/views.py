@@ -51,7 +51,6 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid(): 
-            print('order form valid')
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
@@ -60,7 +59,6 @@ def checkout(request):
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
-                    print('product in order')
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
@@ -111,7 +109,7 @@ def checkout(request):
         try:
             profile = UserProfile.objects.get(user=request.user)
             order_form = OrderForm(initial={
-                'full_name': profile.user.get_full_name(),
+                'full_name': profile.default_full_name,
                 'email': profile.user.email,
                 'phone_number': profile.default_phone_number,
                 'country': profile.default_country,
@@ -156,6 +154,7 @@ def checkout_success(request, order_number):
         # Save the user's info
         if save_info:
             profile_data = {
+                'default_full_name': order.full_name,
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,
                 'default_postcode': order.postcode,
