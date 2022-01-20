@@ -26,6 +26,7 @@ def wishlist(request):
     return render(request, template, context)
 
 
+@login_required
 def toggle_wishlist(request, product_id):
     ''' Add or remove product to user wishlist'''
 

@@ -61,7 +61,7 @@
             <h5 class="text-muted d-md-none">Product Variations</h5>
             <hr class="d-md-none">
 
-            {% if product.productvariations_set.all %}
+            {% if product.variations.all %}
             <table class="table table-sm">
                 <thead>
                     <tr>
@@ -71,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for var in product.productvariations_set.all %}
+                    {% for var in product.variations.all %}
                     <tr>
                         <td>
                             {{ var.category|capfirst }}

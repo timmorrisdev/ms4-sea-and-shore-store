@@ -60,7 +60,7 @@
                                 <ul class="list-unstyled">
                                     {% for item in order.lineitems.all %}
                                     <li class="small">
-                                        {% if item.product.productvariations_set.all %}
+                                        {% if item.product.variations.all %}
                                         Size {{ item.product_size|capfirst }}
                                         {% endif %}{{ item.product.name }} x{{ item.quantity }}
                                     </li>

@@ -29,7 +29,7 @@
                 <div class="col-9">
                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                     <p class="my-0 small">Size:
-                        {% if item.product.productvariations_set.all %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                        {% if item.product.variations.all %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
                     <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                 </div>
             </div>
@@ -49,10 +49,10 @@
                 </p>
                 {% endif %}
                 <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0">
-                    <span class="text-uppercase">Go To Secure Checkout</span>
-                    <span class="icon">
+                    <span class="text-uppercase">View Bag</span>
+                    <!-- <span class="icon">
                         <i class="fas fa-lock"></i>
-                    </span>
+                    </span> -->
                 </a>
             </div>
         </div>

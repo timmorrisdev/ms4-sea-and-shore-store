@@ -24,7 +24,7 @@
                     </span>
                 </button>
             </div>
-            {% if item.product.productvariations_set.all %}
+            {% if item.product.variations.all %}
             <input type="hidden" name="product_size" value="{{ item.size }}">
             {% endif %}
         </div>

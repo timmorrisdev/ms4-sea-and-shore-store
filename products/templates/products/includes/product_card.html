@@ -38,9 +38,10 @@
                     {% endif %}
 
                 </div>
+
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <a href="{% url 'toggle_wishlist' product.id %}">
-                        {% if product not in request.user.userwishlist.products.all %}
+                        {% if  product not in wishlist_items %}
                         <div class="text-black wishlist-icon" title="Add to wishlist">
                             <i class="far fa-star fa-3x"></i>
                         </div>
@@ -50,7 +51,7 @@
                         </div>
                         {% endif %}
 
-                        <!-- <span class="text-uppercase">Add to wishlist</span> -->
+
                     </a>
                 </div>
             </div>

@@ -52,7 +52,8 @@ VARIATION_CATEGORIES = (
 
 class ProductVariations(models.Model):
     ''' Model for product variations '''
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='variations')
     category = models.CharField(max_length=120, choices=VARIATION_CATEGORIES,
                                 default='size')
     name = models.CharField(max_length=120)

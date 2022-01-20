@@ -1,4 +1,4 @@
 <p class="my-0"><strong>{{ item.product.name }}</strong></p>
 <p class="my-0"><strong>Size:
-    </strong>{% if item.product.productvariations_set.all %}{{ item.size|capfirst }}{% else %}N/A{% endif %}</p>
+    </strong>{% if item.product.variations.all %}{{ item.size|capfirst }}{% else %}N/A{% endif %}</p>
 <p class="my-0 small text-muted">Code: {{ item.product.code }}</p>
