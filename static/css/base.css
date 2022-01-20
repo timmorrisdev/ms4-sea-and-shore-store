@@ -293,6 +293,10 @@ input[name='q']::placeholder {
     border-top: none !important;
 }
 
+.nav-wrapper {
+    border: none;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

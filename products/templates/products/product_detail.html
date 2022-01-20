@@ -138,12 +138,5 @@
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
-<script>
-    $('.wishlist-icon').tooltip({
-        show: {
-            effect: "fade",
-            duration: 800
-        }
-    });
-</script>
+<script src="{% static 'products/js/products.js' %}"></script>
 {% endblock %}
