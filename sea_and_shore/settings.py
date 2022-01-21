@@ -93,6 +93,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'bag.contexts.bag_contents',
                 'wishlist.contexts.wishlist_items',
+                'product_reviews.contexts.product_reviews',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
