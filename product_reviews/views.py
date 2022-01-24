@@ -81,6 +81,7 @@ def delete_product_review(request, review_id):
     product = get_object_or_404(Product, pk=review.product.id)
     product_id = review.product.id
     review.delete()
+    update_product_rating(product)
 
     messages.success(request, 'Successfully deleted product review!')
     return redirect(reverse('product_detail', args=[product_id]))
