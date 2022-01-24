@@ -7,7 +7,7 @@ class ProductReviewForm(forms.ModelForm):
     '''form to add product review '''
     class Meta:
         model = ProductReview
-        fields = 'rating', 'review'
+        fields = 'rating', 'title', 'review'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

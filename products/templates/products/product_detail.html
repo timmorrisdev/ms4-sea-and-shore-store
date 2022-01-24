@@ -44,7 +44,7 @@
                 {% else %}
                 <small class="text-muted">No Rating</small>
                 {% endif %}
-                <a href="{% url 'add_product_review' product.id %}">Add review</a>
+
                 <br>
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
@@ -139,10 +139,12 @@
 </div>
 
 <div class="row">
-    <div class="col-12 col-lg-8 offset-lg-2">
-        <h2 class="text-center">Reviews({{ product.id|review_count }})</h2>
+    <div class="col-12 col-lg-8 offset-lg-2 text-center">
+        <h2 class="">Reviews({{ product.id|review_count }})</h2>
 
-
+        {% if user.is_authenticated %}
+        <a href="{% url 'add_product_review' product.id %}">Add Review</a>
+        {% endif %}
 
         <div class="row">
 
@@ -155,6 +157,12 @@
                     <div class="card-header">
                         <h5 class="card-title">"{{ review.title }}"</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Rating: {{ review.rating }}</h6>
+                        {% if user == review.reviewer %}
+                        <small class="ml-3">
+                            <a href="{% url 'edit_product_review' review.id %}">Edit</a> |
+                            <a class="text-danger" href="{% url 'delete_product_review' review.id %}">Delete</a>
+                        </small>
+                        {% endif %}
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{ review.review }}</p>
