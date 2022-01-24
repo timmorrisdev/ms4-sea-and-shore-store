@@ -27,8 +27,11 @@ def wishlist(request):
 
 
 @login_required
-def toggle_wishlist(request, product_id):
+def toggle_wishlist(request, product_id, path):
     ''' Add or remove product to user wishlist'''
+    current_path = path[:-1]
+    print(path)
+    print(current_path)
 
     product = get_object_or_404(Product, pk=product_id)
     wishlist = get_object_or_404(UserWishlist, user=request.user)

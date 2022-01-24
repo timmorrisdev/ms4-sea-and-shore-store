@@ -50,6 +50,7 @@ def all_products(request):
 
     current_sorting = f'{sort}_{direction}'
 
+    template = 'products/products.html'
     context = {
         'products': products,
         'search_term': query,
@@ -57,7 +58,9 @@ def all_products(request):
         'current_sorting': current_sorting,
     }
 
-    return render(request, 'products/products.html', context)
+
+
+    return render(request, template, context)
 
 
 def product_detail(request, product_id):
@@ -65,11 +68,12 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    template = 'products/product_detail.html'
     context = {
         'product': product,
     }
 
-    return render(request, 'products/product_detail.html', context)
+    return render(request, template, context)
 
 
 @login_required

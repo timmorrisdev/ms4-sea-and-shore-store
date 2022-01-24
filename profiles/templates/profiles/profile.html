@@ -17,9 +17,10 @@
 <div class="overlay"></div>
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col pt-4">
             <hr>
-            <h2 class="logo-font mb-4">My Profile</h2>
+            <h2 class="logo-font ">My Profile</h2>
+            <!-- <a type="button" class="text-danger mb-2" data-toggle="modal" data-target="#deleteProfileModal">Delete</a> -->
             <hr>
         </div>
     </div>
@@ -48,7 +49,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for order in orders %}
+                        {% for order in orders reversed %}
                         <tr>
                             <td>
                                 <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
@@ -77,6 +78,7 @@
     </div>
 
 </div>
+
 {% endblock %}
 
 {% block postloadjs %}

@@ -1,5 +1,5 @@
 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-    <div class="card h-100 product-card bg-white-op">
+    <div class="card h-100 product-card">
         {% if product.image %}
         <a href="{% url 'product_detail' product.id %}">
             <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -10,9 +10,10 @@
         </a>
         {% endif %}
         <div class="card-body pb-0">
-            <p class="mb-0">{{ product.name }}</p>
+            <hr>
+            <p class="mb-1">{{ product.name }}</p>
         </div>
-        <div class="card-footer bg-white-op pt-0 border-0 text-left">
+        <div class="card-footer pt-0 border-0 text-left">
             <div class="row">
                 <div class="col-8">
                     <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
@@ -41,7 +42,7 @@
                 </div>
 
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <a href="{% url 'toggle_wishlist' product.id %}">
+                    <a href="{% url 'toggle_wishlist' product.id request.get_full_path %}">
                         {% if  product not in wishlist_items %}
                         <div class="text-black wishlist-icon" title="Add to wishlist">
                             <i class="far fa-star fa-3x"></i>
@@ -73,7 +74,7 @@
                 <p>Are you sure? This action cannot be undone!</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline-black rounded-0" data-dismiss="modal">Cancel</button>
                 <a type="button" class="btn btn-danger" href="{% url 'delete_product' product.id %}">Yes, Delete</a>
             </div>
         </div>
