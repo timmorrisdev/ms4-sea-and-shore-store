@@ -41,7 +41,7 @@ def add_product_review(request, product_id):
 
 
 def update_product_rating(product):
-    # update product rating
+    '''update product rating'''
 
     reviews = ProductReview.objects.all()
     product_reviews = reviews.filter(product=product)
@@ -51,7 +51,5 @@ def update_product_rating(product):
         total += i.rating
 
     new_rating = round(total / len(product_reviews), 2)
-    print(new_rating)
     product.rating = new_rating
     product.save()
-

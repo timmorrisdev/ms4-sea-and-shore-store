@@ -9,6 +9,7 @@ class ProductReviewAdmin(admin.ModelAdmin):
         'product',
         'rating',
         'reviewer',
+        'date',
     )
 
 

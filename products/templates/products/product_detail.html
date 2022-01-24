@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load review_count %}
 
 {% block page_header %}
 <div class="container header-container">
@@ -138,32 +139,37 @@
 </div>
 
 <div class="row">
-    <div class="col-12">
-        <h2 class="text-center">Reviews</h2>
-    </div>
-</div>
-
-<div class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+        <h2 class="text-center">Reviews({{ product.id|review_count }})</h2>
 
 
 
-    {% for review in product_reviews %}
-    {% if product.name in review.product.name %}
-    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <div class="card" style="">
-            <div class="card-body">
-                <h5 class="card-title">Add review title to model</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ review.rating }}</h6>
-                <p class="card-text">{{ review.review }}</p>
+        <div class="row">
+
+
+
+            {% for review in product_reviews %}
+            {% if product.name in review.product.name %}
+            <div class="col-md-6 my-4">
+                <div class="card" style="">
+                    <div class="card-header">
+                        <h5 class="card-title">"{{ review.title }}"</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Rating: {{ review.rating }}</h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ review.review }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {% if review.reviewer %}{{ review.reviewer }}{% else %}Anonymous{% endif %} -
+                        {{ review.date|date:"d M, Y" }}
+                    </div>
+                </div>
             </div>
-            <div class="card-footer text-muted">
-                {{ review.reviewer }} - add date to model
-            </div>
+            {% endif %}
+            {% endfor %}
+
         </div>
     </div>
-    {% endif %}
-    {% endfor %}
-
 </div>
 </div>
 {% endblock %}
