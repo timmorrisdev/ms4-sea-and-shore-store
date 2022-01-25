@@ -6,7 +6,7 @@ class UserWishlistAdmin(admin.ModelAdmin):
     model = UserWishlist
 
     # list_display = (
-    #     'username',
+    #     'user',
     #     'product',
     # )
 

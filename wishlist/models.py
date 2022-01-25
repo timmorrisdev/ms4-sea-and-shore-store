@@ -7,22 +7,31 @@ from django.dispatch import receiver
 from products.models import Product
 
 
+# class WishlistManager(models.Manager):
+#     def create_wishlist(self, user):
+#         wishlist = self.create(user=user)
+
+#         return wishlist
+
+
 class UserWishlist(models.Model):
     '''Model to store user wishlist items'''
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, blank=True)
 
+    # objects = WishlistManager()
+
     def __str__(self):
         return self.user.username
 
 
-@receiver(post_save, sender=User)
-def create_or_update_user_wishlist(sender, instance, created, **kwargs):
-    """
-    Create or update the user wishlist
-    Code based on profiles model from Boutique Ado
-    """
-    if created:
-        UserWishlist.objects.create(user=instance)
-    # Existing users: just save the profile
-    instance.userwishlist.save()
+# @receiver(post_save, sender=User)
+# def create_or_update_user_wishlist(sender, instance, created, **kwargs):
+#     """
+#     Create or update the user wishlist
+#     Code based on profiles model from Boutique Ado
+#     """
+#     if created:
+#         UserWishlist.objects.create(user=instance)
+#     # Existing users: just save the profile
+#     instance.userwishlist.save()

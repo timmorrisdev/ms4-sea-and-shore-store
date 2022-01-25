@@ -12,7 +12,7 @@ class ProductReviewForm(forms.ModelForm):
         fields = ('rating',
                   'title',
                   'review')
-        
+
         # rating = forms.Select( widget=CustomClearableFileInput)
         widgets = {
             'rating': forms.Select(choices=RATING_CHOICES)

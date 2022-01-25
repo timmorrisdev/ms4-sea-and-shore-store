@@ -12,7 +12,11 @@ from .forms import ProductReviewForm
 def add_product_review(request, product_id):
     """ Add a review and rating to the product """
 
-    product = get_object_or_404(Product, pk=product_id)
+    try:
+        product = Product.objects.get(pk=product_id)
+    except Product.DoesNotExist:
+        messages.error(request, 'Product not found.')
+        return redirect(reverse('products'))
 
     if request.method == 'POST':
         form = ProductReviewForm(request.POST)
@@ -29,7 +33,6 @@ def add_product_review(request, product_id):
     else:
         form = ProductReviewForm()
 
-
     template = 'product_reviews/add_product_review.html'
     context = {
         'form': form,
@@ -43,10 +46,22 @@ def add_product_review(request, product_id):
 def edit_product_review(request, review_id):
     """ Add a review and rating to the product """
 
-    review = get_object_or_404(ProductReview, pk=review_id)
-    product = get_object_or_404(Product, pk=review.product.id)
-    product_id = review.product.id
-    print(product_id)
+    try:
+        review = ProductReview.objects.get(pk=review_id)
+    except Product.DoesNotExist:
+        messages.error(request, 'Review not found.')
+        return redirect(reverse('products'))
+
+    try:
+        product = Product.objects.get(pk=review.product_id)
+    except Product.DoesNotExist:
+        messages.error(request, 'Product not found.')
+        return redirect(reverse('products'))
+
+    # review = get_object_or_404(ProductReview, pk=review_id)
+    # product = get_object_or_404(Product, pk=review.product.id)
+    # product_id = review.product.id
+    # print(product_id)
 
     if request.method == 'POST':
         form = ProductReviewForm(request.POST, instance=review)
@@ -57,7 +72,7 @@ def edit_product_review(request, review_id):
             review.save()
             update_product_rating(product)
             messages.success(request, 'Successfully updated product review!')
-            return redirect(reverse('product_detail', args=[product_id]))
+            return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed update review. Please ensure the form is valid.')
     else:
@@ -77,14 +92,26 @@ def edit_product_review(request, review_id):
 @login_required()
 def delete_product_review(request, review_id):
 
-    review = get_object_or_404(ProductReview, pk=review_id)
-    product = get_object_or_404(Product, pk=review.product.id)
-    product_id = review.product.id
+    try:
+        review = ProductReview.objects.get(pk=review_id)
+    except Product.DoesNotExist:
+        messages.error(request, 'Review not found.')
+        return redirect(reverse('products'))
+
+    try:
+        product = Product.objects.get(pk=review.product_id)
+    except Product.DoesNotExist:
+        messages.error(request, 'Product not found.')
+        return redirect(reverse('products'))
+
+    # review = get_object_or_404(ProductReview, pk=review_id)
+    # product = get_object_or_404(Product, pk=review.product.id)
+
     review.delete()
     update_product_rating(product)
 
     messages.success(request, 'Successfully deleted product review!')
-    return redirect(reverse('product_detail', args=[product_id]))
+    return redirect(reverse('product_detail', args=[product.id]))
 
 
 

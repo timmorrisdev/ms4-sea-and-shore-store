@@ -14,30 +14,37 @@ from .models import UserWishlist
 def wishlist(request):
     """ Display the user's wishlsit. """
 
-    wishlist = get_object_or_404(UserWishlist, user=request.user)
-    wishlist_items = wishlist.products.all()
+    # do i need this code?
+    try:
+        UserWishlist.objects.get(user=request.user)
+    except UserWishlist.DoesNotExist:
+        messages.info(request,
+                         ('Nothing in wishlist'))
 
     template = 'wishlist/wishlist.html'
-    context = {
-        'wishlist': wishlist,
-        'wishlist_items': wishlist_items
-    }
 
-    return render(request, template, context)
+    return render(request, template)
 
 
 @login_required
 def toggle_wishlist(request, product_id, path):
     ''' Add or remove product to user wishlist'''
-    current_path = path[:-1]
-    print(path)
-    print(current_path)
+    # current_path = path[:-1]
+    # print(path)
+    # print(current_path)
+    # uri = request.build_absolute_uri(path)
+    # print(uri)
 
-    uri = request.build_absolute_uri(path)
-    print(uri)
+    try:
+        product = Product.objects.get(pk=product_id)
+    except Product.DoesNotExist:
+        messages.error(request, 'Product not found.')
+        return redirect(reverse('products'))
 
-    product = get_object_or_404(Product, pk=product_id)
-    wishlist = get_object_or_404(UserWishlist, user=request.user)
+    try:
+        wishlist = UserWishlist.objects.get(user=request.user)
+    except UserWishlist.DoesNotExist:
+        wishlist = UserWishlist.objects.create(user=request.user)
 
     # check if product does not exist in user wishlist
     if product not in wishlist.products.all():
