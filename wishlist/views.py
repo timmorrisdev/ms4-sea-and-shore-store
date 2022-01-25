@@ -33,6 +33,9 @@ def toggle_wishlist(request, product_id, path):
     print(path)
     print(current_path)
 
+    uri = request.build_absolute_uri(path)
+    print(uri)
+
     product = get_object_or_404(Product, pk=product_id)
     wishlist = get_object_or_404(UserWishlist, user=request.user)
 
@@ -47,4 +50,7 @@ def toggle_wishlist(request, product_id, path):
                          (f'Successfully removed {product.name} '
                           f'from wishlist'))
 
-    return redirect(reverse('products'))
+    template = f'https://8000-tan-puma-6qrvi9ci.ws-eu28.gitpod.io/{path}'
+
+    return redirect(template)
+    # return redirect(uri)
