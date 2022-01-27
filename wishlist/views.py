@@ -17,11 +17,11 @@ def wishlist(request):
     """ Display the user's wishlsit. """
 
     # do i need this code?
-    try:
-        UserWishlist.objects.get(user=request.user)
-    except UserWishlist.DoesNotExist:
-        messages.info(request,
-                         ('Nothing in wishlist'))
+    # try:
+    #     UserWishlist.objects.get(user=request.user)
+    # except UserWishlist.DoesNotExist:
+    #     messages.info(request,
+    #                      ('Nothing in wishlist'))
 
     template = 'wishlist/wishlist.html'
 
@@ -31,11 +31,6 @@ def wishlist(request):
 @login_required
 def toggle_wishlist(request, product_id, path):
     ''' Add or remove product to user wishlist'''
-    # current_path = path[:-1]
-    # print(f'Path - {path}')
-    # print(current_path)
-    # uri = request.build_absolute_uri(f'Path - {path}')
-    # print(f'URI - {uri}')
 
     try:
         product = Product.objects.get(pk=product_id)
@@ -58,5 +53,8 @@ def toggle_wishlist(request, product_id, path):
         messages.success(request,
                          (f'Successfully removed {product.name} '
                           f'from wishlist'))
+
+    if len(wishlist.products.all()) < 1:
+        wishlist.delete()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

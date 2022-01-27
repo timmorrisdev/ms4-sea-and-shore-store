@@ -44,6 +44,14 @@ class Product(models.Model):
         return self.name
 
 
+class ProductVariationManager(models.Manager):
+    def sizes(self):
+        return super(ProductVariationManager, self).filter(category='size')
+
+    def colours(self):
+        return super(ProductVariationManager, self).filter(category='colour')
+
+
 VARIATION_CATEGORIES = (
     ('size', 'size'),
     ('colour', 'colour')
@@ -60,6 +68,8 @@ class ProductVariations(models.Model):
     image = models.ImageField(null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2,
                                 null=True, blank=True)
+
+    objects = ProductVariationManager()
 
     ''' Override default object name return '''
     def __str__(self):

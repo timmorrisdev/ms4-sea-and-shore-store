@@ -19,6 +19,13 @@ body {
     width: 1.5rem;
 }
 
+.page-icon {
+    background: url('/media/pagelogo.jpg');
+    height: 20px;
+    width: 20px;
+    display: block;
+}
+
 .transition-example {
     transition: all .5s ease-in-out;
     transition-property: all;

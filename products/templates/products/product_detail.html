@@ -60,11 +60,26 @@
                     <div class="form-row">
 
 
-                        {% if product.variations.all %}
-                        <div class="col-12">
+                        {% if product.variations.sizes %}
+                        <div class="col-12 mb-3">
                             <p><strong>Size:</strong></p>
-                            <select class="form-control rounded-0 w-50" name="product_size" id='id_product_size'>
-                                {% for variation in product.variations.all %}
+                            <select class="form-control rounded-0 w-50 mt-n2" name="product_size" id='id_product_size'>
+                                {% for variation in product.variations.sizes %}
+
+                                <option value="{{ variation.name }}">{{ variation.name }}</option>
+
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        {% endif %}
+                        {% if product.variations.colours %}
+                        <div class="col-12">
+                            <p><strong>Colour:</strong></p>
+                            <select class="form-control rounded-0 w-50 mt-n2" name="product_size" id='id_product_size'>
+                                <option value="Select Colour" selected disabled>Select Colour</option>
+
+                                {% for variation in product.variations.colours %}
 
                                 <option value="{{ variation.name }}">{{ variation.name }}</option>
 
