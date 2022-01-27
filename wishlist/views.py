@@ -4,6 +4,8 @@ from django.shortcuts import (
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from django.http import HttpResponseRedirect
+
 from products.models import Product
 from .models import UserWishlist
 
@@ -30,10 +32,10 @@ def wishlist(request):
 def toggle_wishlist(request, product_id, path):
     ''' Add or remove product to user wishlist'''
     # current_path = path[:-1]
-    # print(path)
+    # print(f'Path - {path}')
     # print(current_path)
-    # uri = request.build_absolute_uri(path)
-    # print(uri)
+    # uri = request.build_absolute_uri(f'Path - {path}')
+    # print(f'URI - {uri}')
 
     try:
         product = Product.objects.get(pk=product_id)
@@ -57,7 +59,4 @@ def toggle_wishlist(request, product_id, path):
                          (f'Successfully removed {product.name} '
                           f'from wishlist'))
 
-    template = f'https://8000-tan-puma-6qrvi9ci.ws-eu28.gitpod.io/{path}'
-
-    return redirect(template)
-    # return redirect(uri)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

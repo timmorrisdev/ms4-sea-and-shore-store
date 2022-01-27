@@ -93,6 +93,7 @@ TEMPLATES = [
                 'bag.contexts.bag_contents',
                 'wishlist.contexts.wishlist_items',
                 'product_reviews.contexts.product_reviews',
+                'products.contexts.get_brands',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
