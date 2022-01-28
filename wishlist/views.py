@@ -3,8 +3,10 @@ from django.shortcuts import (
 )
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views import View
 
 from django.http import HttpResponseRedirect
+
 
 from products.models import Product
 from .models import UserWishlist
@@ -12,20 +14,24 @@ from .models import UserWishlist
 # Create your views here.
 
 
-@login_required
-def wishlist(request):
+# @login_required
+class Wishlist(View):
     """ Display the user's wishlsit. """
+    
+    def get(self, request):
 
-    # do i need this code?
-    # try:
-    #     UserWishlist.objects.get(user=request.user)
-    # except UserWishlist.DoesNotExist:
-    #     messages.info(request,
-    #                      ('Nothing in wishlist'))
+        template_name = 'wishlist/wishlist.html'
 
-    template = 'wishlist/wishlist.html'
+        return render(request, template_name)
 
-    return render(request, template)
+
+# @login_required
+# def wishlist(request):
+#     """ Display the user's wishlsit. """
+
+#     template = 'wishlist/wishlist.html'
+
+#     return render(request, template)
 
 
 @login_required
