@@ -9,6 +9,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import SuperUserRequiredMixin
 from django.urls import reverse_lazy
 
@@ -94,6 +95,8 @@ def all_products(request):
 
 
 class ProductDetail(DetailView):
+    '''Class to display the individual product details'''
+
     model = Product
     context_object_name = 'product'
     template_name = 'products/product_detail.html'
@@ -130,11 +133,10 @@ class AddProduct(SuperUserRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = ProductForm
     template_name = 'products/add_product.html'
     success_message = 'Successfully added product!'
-    # success_url = reverse_lazy('product_detail', args=(self.object.id))
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(AddProduct, self).form_valid(form)
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     return super(AddProduct, self).form_valid(form)
 
     def form_invalid(self, form):
         messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
@@ -144,33 +146,60 @@ class AddProduct(SuperUserRequiredMixin, SuccessMessageMixin, CreateView):
         return reverse('product_detail', args=(self.object.id,))
 
 
-@login_required
-def edit_product(request, product_id):
-    """ Edit a product in the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+class EditProduct(SuperUserRequiredMixin, UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'products/edit_product.html'
+    # success_message = 'Successfully updated product!'
 
-    product = get_object_or_404(Product, pk=product_id)
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Successfully updated product!')
-            return redirect(reverse('product_detail', args=[product.id]))
-        else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
-    else:      
-        form = ProductForm(instance=product)
-        messages.info(request, f'You are editing {product.name}')
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        messages.info(self.request, f'You are editing {self.object.name}')
+        return super().get(request, *args, **kwargs)
 
-    template = 'products/edit_product.html'
-    context = {
-        'form': form,
-        'product': product,
-    }
+    def form_invalid(self, form):
+        messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
+        return super().form_invalid(form)
 
-    return render(request, template, context)
+    def get_success_url(self):
+        messages.success(self.request, 'Successfully updated product!')
+        return reverse('product_detail', args=(self.object.id,))
+
+
+# @login_required
+# def edit_product(request, product_id):
+#     """ Edit a product in the store """
+#     if not request.user.is_superuser:
+#         messages.error(request, 'Sorry, only store owners can do that.')
+#         return redirect(reverse('home'))
+
+#     product = get_object_or_404(Product, pk=product_id)
+#     if request.method == 'POST':
+#         form = ProductForm(request.POST, request.FILES, instance=product)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Successfully updated product!')
+#             return redirect(reverse('product_detail', args=[product.id]))
+#         else:
+#             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+#     else:      
+#         form = ProductForm(instance=product)
+#         messages.info(request, f'You are editing {product.name}')
+
+#     template = 'products/edit_product.html'
+#     context = {
+#         'form': form,
+#         'product': product,
+#     }
+
+#     return render(request, template, context)
+
+
+class DeleteProduct(DeleteView):
+
+    model = Product
+    
+
 
 
 @login_required
