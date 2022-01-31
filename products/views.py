@@ -5,6 +5,10 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core.paginator import Paginator
 
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.urls import reverse_lazy
+
 from .models import Product, Category, ProductVariations
 from .forms import ProductForm, VariationForm
 
@@ -53,7 +57,7 @@ def all_products(request):
                 description__icontains=query) | Q(brand__icontains=query)
             products = products.filter(queries)
 
-    paginator = Paginator(products, 6)
+    paginator = Paginator(products, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -73,43 +77,64 @@ def all_products(request):
     return render(request, template, context)
 
 
-def product_detail(request, product_id):
-    """ A view to show individual product details """
+# def product_detail(request, product_id):
+#     """ A view to show individual product details """
 
-    product = get_object_or_404(Product, pk=product_id)
+#     product = get_object_or_404(Product, pk=product_id)
 
-    template = 'products/product_detail.html'
-    context = {
-        'product': product,
-    }
+#     template = 'products/product_detail.html'
+#     context = {
+#         'product': product,
+#     }
 
-    return render(request, template, context)
+#     return render(request, template, context)
 
 
-@login_required
-def add_product(request):
-    """ Add a product to the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+class ProductDetail(DetailView):
+    model = Product
+    context_object_name = 'product'
+    template_name = 'products/product_detail.html'
 
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save()
-            messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))
-        else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
-    else:
-        form = ProductForm()
 
-    template = 'products/add_product.html'
-    context = {
-        'form': form,
-    }
+class AddProduct(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'products/add_product.html'
+    success_url = reverse_lazy('products')
 
-    return render(request, template, context)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AddProduct, self).form_valid(form)
+
+
+
+# @login_required
+# def add_product(request):
+#     """ Add a product to the store """
+#     if not request.user.is_superuser:
+#         messages.error(request, 'Sorry, only store owners can do that.')
+#         return redirect(reverse('home'))
+
+#     if request.method == 'POST':
+#         form = ProductForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             product = form.save()
+#             messages.success(request, 'Successfully added product!')
+#             return redirect(reverse('product_detail', args=[product.id]))
+#         else:
+#             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+#     else:
+#         form = ProductForm()
+
+#     template = 'products/add_product.html'
+#     context = {
+#         'form': form,
+#     }
+
+#     return render(request, template, context)
+
+
+
 
 
 @login_required

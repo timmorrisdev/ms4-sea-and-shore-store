@@ -3,6 +3,7 @@ from django.shortcuts import (
 )
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views import View
 
 from django.http import HttpResponseRedirect
@@ -11,13 +12,11 @@ from django.http import HttpResponseRedirect
 from products.models import Product
 from .models import UserWishlist
 
-# Create your views here.
 
-
-# @login_required
+@method_decorator(login_required, name='dispatch')
 class Wishlist(View):
     """ Display the user's wishlsit. """
-    
+
     def get(self, request):
 
         template_name = 'wishlist/wishlist.html'
