@@ -34,8 +34,9 @@
                     <br>
                     <small class="ml-3">
                         <a href="{% url 'edit_product' product.id %}">Edit</a> |
-                        <a type="button" class="text-danger" data-toggle="modal"
-                            data-target="#deleteProductModal">Delete</a>
+                        <!-- <a type="button" class="text-danger" data-toggle="modal"
+                            data-target="#deleteProductModal">Delete</a> -->
+                        <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete</a>
                     </small>
                     {% endif %}
 

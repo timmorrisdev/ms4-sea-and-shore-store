@@ -8,7 +8,6 @@ from django.core.paginator import Paginator
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import SuperUserRequiredMixin
 from django.urls import reverse_lazy
@@ -94,14 +93,6 @@ def all_products(request):
 #     return render(request, template, context)
 
 
-class ProductDetail(DetailView):
-    '''Class to display the individual product details'''
-
-    model = Product
-    context_object_name = 'product'
-    template_name = 'products/product_detail.html'
-
-
 # @login_required
 # def add_product(request):
 #     """ Add a product to the store """
@@ -126,44 +117,6 @@ class ProductDetail(DetailView):
 #     }
 
 #     return render(request, template, context)
-
-
-class AddProduct(SuperUserRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Product
-    form_class = ProductForm
-    template_name = 'products/add_product.html'
-    success_message = 'Successfully added product!'
-
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super(AddProduct, self).form_valid(form)
-
-    def form_invalid(self, form):
-        messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
-        return super().form_invalid(form)
-
-    def get_success_url(self):
-        return reverse('product_detail', args=(self.object.id,))
-
-
-class EditProduct(SuperUserRequiredMixin, UpdateView):
-    model = Product
-    form_class = ProductForm
-    template_name = 'products/edit_product.html'
-    # success_message = 'Successfully updated product!'
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        messages.info(self.request, f'You are editing {self.object.name}')
-        return super().get(request, *args, **kwargs)
-
-    def form_invalid(self, form):
-        messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
-        return super().form_invalid(form)
-
-    def get_success_url(self):
-        messages.success(self.request, 'Successfully updated product!')
-        return reverse('product_detail', args=(self.object.id,))
 
 
 # @login_required
@@ -195,24 +148,74 @@ class EditProduct(SuperUserRequiredMixin, UpdateView):
 #     return render(request, template, context)
 
 
-class DeleteProduct(DeleteView):
+# @login_required
+# def delete_product(request, product_id):
+#     """ Delete product from the store """
+#     if not request.user.is_superuser:
+#         messages.error(request, 'Sorry, only store owners can do that.')
+#         return redirect(reverse('home'))
+
+#     product = get_object_or_404(Product, pk=product_id)
+#     product.delete()
+#     messages.success(request, "Product deleted!")
+#     return redirect(reverse('products'))
+
+
+class ProductDetail(DetailView):
+    '''Class to display the individual product details'''
 
     model = Product
-    
+    context_object_name = 'product'
+    template_name = 'products/product_detail.html'
 
 
+class AddProduct(SuperUserRequiredMixin, CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'products/add_product.html'
 
-@login_required
-def delete_product(request, product_id):
-    """ Delete product from the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     return super(AddProduct, self).form_valid(form)
 
-    product = get_object_or_404(Product, pk=product_id)
-    product.delete()
-    messages.success(request, "Product deleted!")
-    return redirect(reverse('products'))
+    def form_invalid(self, form):
+        messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
+        return super().form_invalid(form)
+
+    def get_success_url(self):
+        messages.success(self.request, 'Successfully added product!')
+        return reverse('product_detail', args=(self.object.id,))
+
+
+class EditProduct(SuperUserRequiredMixin, UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'products/edit_product.html'
+    # success_message = 'Successfully updated product!'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        messages.info(self.request, f'You are editing {self.object.name}')
+        return super().get(request, *args, **kwargs)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
+        return super().form_invalid(form)
+
+    def get_success_url(self):
+        messages.success(self.request, 'Successfully updated product!')
+        return reverse('product_detail', args=(self.object.id,))
+
+
+class DeleteProduct(SuperUserRequiredMixin, DeleteView):
+
+    model = Product
+    context_object_name = 'product'
+    template_name = 'products/delete_product.html'
+
+    def get_success_url(self):
+        messages.success(self.request, 'Successfully deleted product!')
+        return reverse('products')
 
 
 @login_required
