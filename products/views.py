@@ -7,6 +7,9 @@ from django.core.paginator import Paginator
 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+
+from django.contrib.messages.views import SuccessMessageMixin
+from .mixins import SuperUserRequiredMixin
 from django.urls import reverse_lazy
 
 from .models import Product, Category, ProductVariations
@@ -96,18 +99,6 @@ class ProductDetail(DetailView):
     template_name = 'products/product_detail.html'
 
 
-class AddProduct(CreateView):
-    model = Product
-    form_class = ProductForm
-    template_name = 'products/add_product.html'
-    success_url = reverse_lazy('products')
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(AddProduct, self).form_valid(form)
-
-
-
 # @login_required
 # def add_product(request):
 #     """ Add a product to the store """
@@ -134,7 +125,23 @@ class AddProduct(CreateView):
 #     return render(request, template, context)
 
 
+class AddProduct(SuperUserRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'products/add_product.html'
+    success_message = 'Successfully added product!'
+    # success_url = reverse_lazy('product_detail', args=(self.object.id))
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AddProduct, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
+        return super().form_invalid(form)
+
+    def get_success_url(self):
+        return reverse('product_detail', args=(self.object.id,))
 
 
 @login_required
