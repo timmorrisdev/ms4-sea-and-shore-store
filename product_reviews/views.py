@@ -62,22 +62,25 @@ def edit_product_review(request, review_id):
     # product = get_object_or_404(Product, pk=review.product.id)
     # product_id = review.product.id
     # print(product_id)
+    if review.reviewer == request.user:
 
-    if request.method == 'POST':
-        form = ProductReviewForm(request.POST, instance=review)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.reviewer = request.user
-            review.product = product
-            review.save()
-            update_product_rating(product)
-            messages.success(request, 'Successfully updated product review!')
-            return redirect(reverse('product_detail', args=[product.id]))
+        if request.method == 'POST':
+            form = ProductReviewForm(request.POST, instance=review)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.reviewer = request.user
+                review.product = product
+                review.save()
+                update_product_rating(product)
+                messages.success(request, 'Successfully updated product review!')
+                return redirect(reverse('product_detail', args=[product.id]))
+            else:
+                messages.error(request, 'Failed update review. Please ensure the form is valid.')
         else:
-            messages.error(request, 'Failed update review. Please ensure the form is valid.')
+            form = ProductReviewForm(instance=review)
     else:
-        form = ProductReviewForm(instance=review)
-
+        messages.error(request, "Sorry, you don't have permission do that.")
+        return redirect(reverse('home'))
 
     template = 'product_reviews/edit_product_review.html'
     context = {
@@ -104,15 +107,15 @@ def delete_product_review(request, review_id):
         messages.error(request, 'Product not found.')
         return redirect(reverse('products'))
 
-    # review = get_object_or_404(ProductReview, pk=review_id)
-    # product = get_object_or_404(Product, pk=review.product.id)
+    if review.reviewer == request.user:
+        review.delete()
+        update_product_rating(product)
 
-    review.delete()
-    update_product_rating(product)
-
-    messages.success(request, 'Successfully deleted product review!')
-    return redirect(reverse('product_detail', args=[product.id]))
-
+        messages.success(request, 'Successfully deleted product review!')
+        return redirect(reverse('product_detail', args=[product.id]))
+    else:
+        messages.error(request, "Sorry, you don't have permission do that.")
+        return redirect(reverse('home'))
 
 
 def update_product_rating(product):

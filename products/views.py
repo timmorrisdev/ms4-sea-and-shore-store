@@ -263,7 +263,6 @@ class AddProductVariation(SuperUserRequiredMixin, CreateView):
 #     else:
 #         form = VariationForm()
 
-
 #     template = 'products/add_product_variation.html'
 #     context = {
 #         'form': form,
