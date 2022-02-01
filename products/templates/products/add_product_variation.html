@@ -32,6 +32,9 @@
 
     <div class="row">
         <div class="col-12 col-md-6">
+            <span>
+                <p> <strong>{{ product.name }}</strong></p>
+            </span>
             <form method="POST" action="{% url 'add_product_variation' product.id %}" class="form mb-2"
                 enctype="multipart/form-data">
                 {% csrf_token %}
@@ -42,10 +45,6 @@
                 {{ field }}
                 {% endif %}
                 {% endfor %}
-
-
-
-
 
                 <div class="text-right">
                     <a class="btn btn-outline-black rounded-0" href="{% url 'edit_product' product.id %}">Back to

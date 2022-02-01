@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core.paginator import Paginator
 
+from django.views import View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 
@@ -161,6 +163,8 @@ def all_products(request):
 #     return redirect(reverse('products'))
 
 
+# Class Based Views
+
 class ProductDetail(DetailView):
     '''Class to display the individual product details'''
 
@@ -173,10 +177,6 @@ class AddProduct(SuperUserRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'products/add_product.html'
-
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super(AddProduct, self).form_valid(form)
 
     def form_invalid(self, form):
         messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
@@ -218,36 +218,59 @@ class DeleteProduct(SuperUserRequiredMixin, DeleteView):
         return reverse('products')
 
 
-@login_required
-def add_product_variation(request, product_id):
-    """ Add a variation to the product """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+class AddProductVariation(SuperUserRequiredMixin, CreateView):
+    model = ProductVariations
+    form_class = VariationForm
+    template_name = 'products/add_product_variation.html'
 
-    product = get_object_or_404(Product, pk=product_id)
+    def form_valid(self, form):
+        form.instance.product = Product.objects.get(pk=self.kwargs['product_id'])
+        return super(AddProductVariation, self).form_valid(form)
 
-    if request.method == 'POST':
-        form = VariationForm(request.POST, request.FILES)
-        if form.is_valid():
-            variation = form.save(commit=False)
-            variation.product = product
-            variation.save()
-            messages.success(request, 'Successfully added product variation!')
-            return redirect(reverse('add_product_variation', args=[product_id]))
-        else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
-    else:
-        form = VariationForm()
+    def form_invalid(self, form):
+        messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
+        return super().form_invalid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = Product.objects.get(pk=self.kwargs['product_id'])
+        return context
+
+    def get_success_url(self, **kwargs):
+        messages.success(self.request, 'Successfully added product variation!')
+        return reverse_lazy('add_product_variation', args=(self.kwargs['product_id']))
 
 
-    template = 'products/add_product_variation.html'
-    context = {
-        'form': form,
-        'product': product
-    }
+# @login_required
+# def add_product_variation(request, product_id):
+#     """ Add a variation to the product """
+#     if not request.user.is_superuser:
+#         messages.error(request, 'Sorry, only store owners can do that.')
+#         return redirect(reverse('home'))
 
-    return render(request, template, context)
+#     product = get_object_or_404(Product, pk=product_id)
+
+#     if request.method == 'POST':
+#         form = VariationForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             variation = form.save(commit=False)
+#             variation.product = product
+#             variation.save()
+#             messages.success(request, 'Successfully added product variation!')
+#             return redirect(reverse('add_product_variation', args=[product_id]))
+#         else:
+#             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+#     else:
+#         form = VariationForm()
+
+
+#     template = 'products/add_product_variation.html'
+#     context = {
+#         'form': form,
+#         'product': product
+#     }
+
+#     return render(request, template, context)
 
 
 @login_required
@@ -262,3 +285,14 @@ def delete_product_variation(request, variation_id):
     variation.delete()
     messages.success(request, "Variation deleted!")
     return redirect(reverse('add_product_variation', args=[product_id]))
+
+
+class DeleteProductVariation(SuperUserRequiredMixin, DeleteView):
+
+    model = Product
+    context_object_name = 'product'
+    template_name = 'products/delete_product.html'
+
+    def get_success_url(self):
+        messages.success(self.request, 'Successfully deleted product!')
+        return reverse('products')
