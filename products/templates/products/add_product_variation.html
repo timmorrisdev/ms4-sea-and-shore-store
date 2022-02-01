@@ -64,8 +64,9 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Catergory</th>
+                        <th>Category</th>
                         <th>Variation</th>
+                        <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -78,6 +79,9 @@
 
                         <td>
                             {{ var.name|capfirst }}
+                        </td>
+                        <td>
+                            <a class="text-info" href="{% url 'edit_product_variation' var.id %}">Edit</a>
                         </td>
 
                         <td>

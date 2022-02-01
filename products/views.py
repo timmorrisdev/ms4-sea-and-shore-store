@@ -163,6 +163,37 @@ def all_products(request):
 #     return redirect(reverse('products'))
 
 
+# @login_required
+# def add_product_variation(request, product_id):
+#     """ Add a variation to the product """
+#     if not request.user.is_superuser:
+#         messages.error(request, 'Sorry, only store owners can do that.')
+#         return redirect(reverse('home'))
+
+#     product = get_object_or_404(Product, pk=product_id)
+
+#     if request.method == 'POST':
+#         form = VariationForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             variation = form.save(commit=False)
+#             variation.product = product
+#             variation.save()
+#             messages.success(request, 'Successfully added product variation!')
+#             return redirect(reverse('add_product_variation', args=[product_id]))
+#         else:
+#             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+#     else:
+#         form = VariationForm()
+
+#     template = 'products/add_product_variation.html'
+#     context = {
+#         'form': form,
+#         'product': product
+#     }
+
+#     return render(request, template, context)
+
+
 # Class Based Views
 
 class ProductDetail(DetailView):
@@ -191,7 +222,6 @@ class EditProduct(SuperUserRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'products/edit_product.html'
-    # success_message = 'Successfully updated product!'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -241,57 +271,59 @@ class AddProductVariation(SuperUserRequiredMixin, CreateView):
         return reverse_lazy('add_product_variation', args=(self.kwargs['product_id']))
 
 
-# @login_required
-# def add_product_variation(request, product_id):
-#     """ Add a variation to the product """
-#     if not request.user.is_superuser:
-#         messages.error(request, 'Sorry, only store owners can do that.')
-#         return redirect(reverse('home'))
+class EditProductVariation(SuperUserRequiredMixin, UpdateView):
+    model = ProductVariations
+    form_class = VariationForm
+    template_name = 'products/edit_product_variation.html'
 
-#     product = get_object_or_404(Product, pk=product_id)
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        messages.info(self.request, f'You are editing {self.object.name}')
+        return super().get(request, *args, **kwargs)
 
-#     if request.method == 'POST':
-#         form = VariationForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             variation = form.save(commit=False)
-#             variation.product = product
-#             variation.save()
-#             messages.success(request, 'Successfully added product variation!')
-#             return redirect(reverse('add_product_variation', args=[product_id]))
-#         else:
-#             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
-#     else:
-#         form = VariationForm()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = Product.objects.get(pk=self.object.product.id)
+        return context
 
-#     template = 'products/add_product_variation.html'
-#     context = {
-#         'form': form,
-#         'product': product
-#     }
+    def form_invalid(self, form):
+        messages.error(self.request, 'Failed to update product variation. Please ensure the form is valid.')
+        return super().form_invalid(form)
 
-#     return render(request, template, context)
-
-
-@login_required
-def delete_product_variation(request, variation_id):
-    """ Delete product from the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
-
-    variation = get_object_or_404(ProductVariations, pk=variation_id)
-    product_id = variation.product.id
-    variation.delete()
-    messages.success(request, "Variation deleted!")
-    return redirect(reverse('add_product_variation', args=[product_id]))
+    def get_success_url(self, **kwargs):
+        messages.success(self.request, 'Successfully updated product variation!')
+        return reverse_lazy('add_product_variation', args=(self.kwargs['product_id']))
 
 
 class DeleteProductVariation(SuperUserRequiredMixin, DeleteView):
 
-    model = Product
-    context_object_name = 'product'
-    template_name = 'products/delete_product.html'
+    model = ProductVariations
+    context_object_name = 'variation'
+    template_name = 'products/delete_product_variation.html'
 
-    def get_success_url(self):
-        messages.success(self.request, 'Successfully deleted product!')
-        return reverse('products')
+    def get_product(self):
+        product = Product.objects.get(pk=self.object.product.id)
+        return product
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = Product.objects.get(pk=self.object.product.id)
+        return context
+
+    def get_success_url(self, **kwargs):
+        messages.success(self.request, 'Successfully deleted product variation!')
+        return reverse_lazy('add_product_variation', args=(self.get_product().pk,))
+
+
+# @login_required
+# def delete_product_variation(request, variation_id):
+#     """ Delete product variation """
+#     if not request.user.is_superuser:
+#         messages.error(request, 'Sorry, only store owners can do that.')
+#         return redirect(reverse('home'))
+
+#     variation = get_object_or_404(ProductVariations, pk=variation_id)
+#     product_id = variation.product.id
+#     variation.delete()
+#     messages.success(request, "Variation deleted!")
+#     return redirect(reverse('add_product_variation', args=[product_id]))
