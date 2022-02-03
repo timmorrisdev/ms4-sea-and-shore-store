@@ -66,25 +66,38 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="pagination mb-2">
-                        <span class="step-links">
+
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" class="text-black">
+
                             {% if page_obj.has_previous %}
-                            <a href="?sort={{ current_sorting }}&page=1">&laquo; first</a>
-                            <a href="?sort={{ current_sorting }}&page={{ page_obj.previous_page_number }}">previous</a>
+                            <li class="page-item">
+                                <a class="page-link btn btn-outline-black rounded-0"
+                                    href="?sort={{ current_sorting }}&page=1">&laquo; first</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link btn btn-outline-black rounded-0"
+                                    href="?sort={{ current_sorting }}&page={{ page_obj.previous_page_number }}">previous</a>
+                            </li>
                             {% endif %}
-
-                            <span class="current">
-                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                            </span>
-
+                            <li class="page-item disabled ">
+                                <a class="page-link btn btn-black rounded-0" href="#">Page {{ page_obj.number }}
+                                    of
+                                    {{ page_obj.paginator.num_pages }}.</a>
+                            </li>
                             {% if page_obj.has_next %}
-                            <a href="?sort={{ current_sorting }}&page={{ page_obj.next_page_number }}">next</a>
-                            <a
-                                href="?sort={{ current_sorting }}&page={{ page_obj.paginator.num_pages }}&ordering={{ current_sorting }}">last
-                                &raquo;</a>
+                            <li class="page-item">
+                                <a class="page-link btn btn-outline-black rounded-0"
+                                    href="?sort={{ current_sorting }}&page={{ page_obj.next_page_number }}">next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link btn btn-outline-black rounded-0"
+                                    href="?sort={{ current_sorting }}&page={{ page_obj.paginator.num_pages }}&ordering={{ current_sorting }}">last
+                                    &raquo;</a>
+                            </li>
                             {% endif %}
-                        </span>
-                    </div>
+                        </ul>
+                    </nav>
                 </div>
 
 

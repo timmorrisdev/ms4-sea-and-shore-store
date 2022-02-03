@@ -73,10 +73,11 @@
                             </select>
                         </div>
                         {% endif %}
-                        {% if product.variations.colours %}
+                        <!-- {% if product.variations.colours %}
                         <div class="col-12">
                             <p><strong>Colour:</strong></p>
-                            <select class="form-control rounded-0 w-50 mt-n2" name="product_size" id='id_product_size'>
+                            <select class="form-control rounded-0 w-50 mt-n2" name="product_colour"
+                                id='id_product_colour'>
                                 <option value="Select Colour" selected disabled>Select Colour</option>
 
                                 {% for variation in product.variations.colours %}
@@ -87,7 +88,7 @@
 
                             </select>
                         </div>
-                        {% endif %}
+                        {% endif %} -->
                         <div class="col-12">
                             <p class="mt-3"><strong>Quantity:</strong></p>
                             <div class="form-group w-50">
@@ -170,7 +171,7 @@
             {% for review in product_reviews %}
             {% if product.name in review.product.name %}
             <div class="col-md-6 my-4">
-                <div class="card" style="">
+                <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">"{{ review.title }}"</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Rating: {{ review.rating }}</h6>

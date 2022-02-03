@@ -23,6 +23,7 @@ class ProductList(ListView):
     template_name = 'products/products.html'
     paginate_by = 4
 
+
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset()
 
@@ -33,7 +34,7 @@ class ProductList(ListView):
         if 'brand' in self.request.GET:
             brand = self.request.GET['brand']
             queryset = Product.objects.filter(brand__icontains=brand)
-        
+
         if 'q' in self.request.GET:
             query = self.request.GET['q']
             if not query:
@@ -42,12 +43,12 @@ class ProductList(ListView):
             queries = Q(name__icontains=query) | Q(
                 description__icontains=query) | Q(brand__icontains=query)
             queryset = Product.objects.filter(queries)
-        
+
         return queryset
 
     def get_ordering(self):
 
-        sort_by = None
+        sort_by = 'id'
         if 'sort' in self.request.GET:
             sort_by = self.request.GET['sort']
         if 'direction' in self.request.GET:
@@ -63,10 +64,12 @@ class ProductList(ListView):
         context = super().get_context_data(**kwargs)
 
         context['current_sorting'] = self.get_ordering()
-        
+
         if 'q' in self.request.GET:
             categories = context['products'].values_list('category')
-            context['current_categories'] = Category.objects.filter(id__in=categories)
+            context['current_categories'] = Category.objects.filter(
+                                             id__in=categories
+                                            )
             context['search_term'] = self.request.GET['q']
 
         return context
