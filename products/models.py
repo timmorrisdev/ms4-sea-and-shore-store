@@ -7,6 +7,7 @@ class Category(models.Model):
     class Meta:
         ''' Model to override default addition of s for plural '''
         verbose_name_plural = 'Categories'
+        ordering = ('name',)
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
@@ -45,7 +46,7 @@ class Product(models.Model):
 
     class Meta:
         '''class to determine default ordering of products'''
-        order_with_respect_to = 'name'
+        ordering = ('name',)
 
 
 class ProductVariationManager(models.Manager):
