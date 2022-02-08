@@ -127,6 +127,7 @@
                                     </span>
                                     <span class="text-uppercase">Keep Shopping</span>
                                 </a>
+
                                 <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5"
                                     value="Add to Bag">
 
@@ -140,10 +141,7 @@
                                         <i class="fas fa-star fa-3x"></i>
                                     </div>
                                     {% endif %}
-
-
                                 </a>
-
 
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -158,6 +156,7 @@
 
 <div class="row">
     <div class="col-12 col-lg-8 offset-lg-2 text-center">
+
         <h2 class="">Reviews({{ product.id|review_count }})</h2>
 
         {% if user.is_authenticated %}
@@ -166,15 +165,16 @@
 
         <div class="row">
 
-
-
             {% for review in product_reviews %}
+
             {% if product.name in review.product.name %}
             <div class="col-md-6 my-4">
                 <div class="card">
                     <div class="card-header">
+
                         <h5 class="card-title">"{{ review.title }}"</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Rating: {{ review.rating }}</h6>
+
                         {% if user == review.reviewer %}
                         <small class="ml-3">
                             <a href="{% url 'edit_product_review' review.id %}">Edit</a> |
@@ -188,8 +188,10 @@
                         <p class="card-text">{{ review.review }}</p>
                     </div>
                     <div class="card-footer text-muted">
+
                         {% if review.reviewer %}{{ review.reviewer }}{% else %}Anonymous{% endif %} -
                         {{ review.date|date:"d M, Y" }}
+
                     </div>
                 </div>
             </div>

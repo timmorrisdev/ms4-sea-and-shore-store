@@ -17,12 +17,14 @@ from .models import Product, Category, ProductVariations
 from .forms import ProductForm, VariationForm
 
 
+# Class Based Views
 class ProductList(ListView):
+    '''Class to list products based on search parameters'''
+
     model = Product
     context_object_name = 'products'
     template_name = 'products/products.html'
     paginate_by = 4
-
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset()
@@ -48,7 +50,7 @@ class ProductList(ListView):
 
     def get_ordering(self):
 
-        sort_by = 'id'
+        sort_by = 'name'
         if 'sort' in self.request.GET:
             sort_by = self.request.GET['sort']
         if 'direction' in self.request.GET:
@@ -72,10 +74,11 @@ class ProductList(ListView):
                                             )
             context['search_term'] = self.request.GET['q']
 
+        if 'category' in self.request.GET:
+            context['current_category'] = self.request.GET['category']
+
         return context
 
-
-# Class Based Views
 
 class ProductDetail(DetailView):
     '''Class to display the individual product details'''
@@ -86,6 +89,8 @@ class ProductDetail(DetailView):
 
 
 class AddProduct(SuperUserRequiredMixin, CreateView):
+    '''Class-based view to add product'''
+
     model = Product
     form_class = ProductForm
     template_name = 'products/add_product.html'
@@ -96,10 +101,15 @@ class AddProduct(SuperUserRequiredMixin, CreateView):
 
     def get_success_url(self):
         messages.success(self.request, 'Successfully added product!')
-        return reverse('product_detail', args=(self.object.id,))
+        if self.object.has_variations:
+            return reverse('add_product_variation', args=(self.object.id,))
+        else:
+            return reverse('product_detail', args=(self.object.id,))
 
 
 class EditProduct(SuperUserRequiredMixin, UpdateView):
+    '''Class-based view to edit product'''
+
     model = Product
     form_class = ProductForm
     template_name = 'products/edit_product.html'
@@ -119,6 +129,7 @@ class EditProduct(SuperUserRequiredMixin, UpdateView):
 
 
 class DeleteProduct(SuperUserRequiredMixin, DeleteView):
+    '''Class-based view to delete product'''
 
     model = Product
     context_object_name = 'product'
@@ -130,13 +141,15 @@ class DeleteProduct(SuperUserRequiredMixin, DeleteView):
 
 
 class AddProductVariation(SuperUserRequiredMixin, CreateView):
+    '''Class-based view to add product variation'''
+
     model = ProductVariations
     form_class = VariationForm
     template_name = 'products/add_product_variation.html'
 
     def form_valid(self, form):
         form.instance.product = Product.objects.get(pk=self.kwargs['product_id'])
-        return super(AddProductVariation, self).form_valid(form)
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
@@ -149,17 +162,19 @@ class AddProductVariation(SuperUserRequiredMixin, CreateView):
 
     def get_success_url(self, **kwargs):
         messages.success(self.request, 'Successfully added product variation!')
-        return reverse_lazy('add_product_variation', args=(self.kwargs['product_id']))
+        return reverse_lazy('add_product_variation', args=(self.kwargs['product_id'],))
 
 
 class EditProductVariation(SuperUserRequiredMixin, UpdateView):
+    '''Class-based view to edit product variation'''
+
     model = ProductVariations
     form_class = VariationForm
     template_name = 'products/edit_product_variation.html'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-        messages.info(self.request, f'You are editing {self.object.name}')
+        messages.info(self.request, f'You are editing variation {self.object.name} on {self.object.product.name}')
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -173,10 +188,11 @@ class EditProductVariation(SuperUserRequiredMixin, UpdateView):
 
     def get_success_url(self, **kwargs):
         messages.success(self.request, 'Successfully updated product variation!')
-        return reverse_lazy('add_product_variation', args=(self.kwargs['product_id']))
+        return reverse_lazy('add_product_variation', args=(self.get_product().pk,))
 
 
 class DeleteProductVariation(SuperUserRequiredMixin, DeleteView):
+    '''Class-based view to delete product variation'''
 
     model = ProductVariations
     context_object_name = 'variation'

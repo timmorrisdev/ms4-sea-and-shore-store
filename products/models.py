@@ -28,7 +28,7 @@ class Product(models.Model):
                             blank=True)
     name = models.CharField(max_length=120)
     description = models.TextField()
-    has_sizes = models.BooleanField(default=False, null=True, blank=True)
+    has_variations = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     brand = models.CharField(max_length=120)
     category = models.ForeignKey('Category',
@@ -44,14 +44,19 @@ class Product(models.Model):
         return self.name
 
     class Meta:
+        '''class to determine default ordering of products'''
         order_with_respect_to = 'name'
 
 
 class ProductVariationManager(models.Manager):
+    '''variation manager to return objects in each category'''
+
     def sizes(self):
+        '''return Product objects with size variations'''
         return super(ProductVariationManager, self).filter(category='size')
 
     def colours(self):
+        '''return Product objects with colour variations'''
         return super(ProductVariationManager, self).filter(category='colour')
 
 

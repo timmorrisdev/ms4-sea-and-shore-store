@@ -53,7 +53,7 @@
                 Outdoor / Lifestyle
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="outdoor-lifestyle-link">
-                <a href="{% url 'products' %}?category=outdorr_equipment" class="dropdown-item">Outdoor Equipment</a>
+                <a href="{% url 'products' %}?category=outdoor_equipment" class="dropdown-item">Outdoor Equipment</a>
                 <a href="{% url 'products' %}?category=camping" class="dropdown-item ">Camping</a>
                 <a href="{% url 'products' %}?category=tech_gadgets" class="dropdown-item ">Tech / Gadgets</a>
             </div>
@@ -65,7 +65,7 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="outdoor-lifestyle-link">
                 {% for brand in brands %}
-                <a href="{% url 'products' %}?brand={{ brand }}" class="dropdown-item">{{ brand }}</a>
+                <a href="{% url 'products' %}?brand={{ brand }}" class="dropdown-item">{{ brand.lower|capfirst }}</a>
                 {% endfor %}
             </div>
         </li>
