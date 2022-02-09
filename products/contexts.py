@@ -2,7 +2,8 @@ from .models import Product
 
 
 def get_brands(request):
-    ''' Function to return unique brand entries to template'''
+    ''' Function to return unique brand entries to template
+        for use in navigation'''
 
     products = Product.objects.all()
 

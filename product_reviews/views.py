@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -29,7 +29,8 @@ def add_product_review(request, product_id):
             messages.success(request, 'Successfully added product review!')
             return redirect(reverse('product_detail', args=[product_id]))
         else:
-            messages.error(request, 'Failed to add review. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add review. \
+                                     Please ensure the form is valid.')
     else:
         form = ProductReviewForm()
 
@@ -58,10 +59,6 @@ def edit_product_review(request, review_id):
         messages.error(request, 'Product not found.')
         return redirect(reverse('products'))
 
-    # review = get_object_or_404(ProductReview, pk=review_id)
-    # product = get_object_or_404(Product, pk=review.product.id)
-    # product_id = review.product.id
-    # print(product_id)
     if review.reviewer == request.user:
 
         if request.method == 'POST':
@@ -72,10 +69,12 @@ def edit_product_review(request, review_id):
                 review.product = product
                 review.save()
                 update_product_rating(product)
-                messages.success(request, 'Successfully updated product review!')
+                messages.success(request,
+                                 'Successfully updated product review!')
                 return redirect(reverse('product_detail', args=[product.id]))
             else:
-                messages.error(request, 'Failed update review. Please ensure the form is valid.')
+                messages.error(request, 'Failed update review. \
+                                         Please ensure the form is valid.')
         else:
             form = ProductReviewForm(instance=review)
     else:
@@ -94,6 +93,7 @@ def edit_product_review(request, review_id):
 
 @login_required()
 def delete_product_review(request, review_id):
+    """ Delete review and rating from the product """
 
     try:
         review = ProductReview.objects.get(pk=review_id)

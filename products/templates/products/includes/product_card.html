@@ -1,5 +1,10 @@
+<!-- Product Overview Card for use across site -->
+
 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
     <div class="card h-100 product-card">
+
+        <!-- Product Image Section -->
+        <!-- Display image else default to 'no image' -->
         {% if product.image %}
         <a href="{% url 'product_detail' product.id %}">
             <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -9,14 +14,22 @@
             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
         </a>
         {% endif %}
+
+        <!-- Product Name -->
         <div class="card-body pb-0">
             <hr>
             <p class="mb-1">{{ product.name }}</p>
         </div>
+
+        <!-- Product Details Overview -->
         <div class="card-footer pt-0 border-0 text-left">
             <div class="row">
                 <div class="col-8">
+
+                    <!-- Price -->
                     <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
+
+                    <!-- Category -->
                     {% if product.category %}
                     <p class="small mt-1 mb-0">
                         <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -24,12 +37,16 @@
                         </a>
                     </p>
                     {% endif %}
+
+                    <!-- Rating -->
                     {% if product.rating %}
                     <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating|floatformat:"1" }} /
                         5</small>
                     {% else %}
                     <small class="text-muted">No Rating</small>
                     {% endif %}
+
+                    <!-- Edit and Delete if user is superuser -->
                     {% if request.user.is_superuser %}
                     <br>
                     <small class="ml-3">
@@ -40,6 +57,7 @@
 
                 </div>
 
+                <!-- Wishlist icon, solid if item in user wishlist -->
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <a href="{% url 'toggle_wishlist' product.id request.get_full_path %}">
                         {% if  product not in wishlist_items %}
@@ -51,8 +69,6 @@
                             <i class="fas fa-star fa-3x"></i>
                         </div>
                         {% endif %}
-
-
                     </a>
                 </div>
             </div>

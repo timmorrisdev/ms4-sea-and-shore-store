@@ -4,6 +4,7 @@ from .models import Product, Category, ProductVariations
 
 
 class ProductForm(forms.ModelForm):
+    '''class to configure the Product Form'''
 
     class Meta:
         model = Product
@@ -22,17 +23,17 @@ class ProductForm(forms.ModelForm):
 
 
 class VariationForm(forms.ModelForm):
+    '''class to configure the Product Variation Form'''
 
     class Meta:
         model = ProductVariations
         fields = ('category', 'name', 'price')
-    
+
     image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # self.fields['category'].choices = name
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'

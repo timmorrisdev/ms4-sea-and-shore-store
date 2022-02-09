@@ -3,6 +3,7 @@
 {% load review_count %}
 
 {% block page_header %}
+<!-- Page header section -->
 <div class="container header-container">
     <div class="row">
         <div class="col"></div>
@@ -13,6 +14,8 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
+
+    <!-- Title section -->
     <div class="row">
         <div class="col-12 col-md-6">
             <hr>
@@ -25,6 +28,8 @@
             <hr>
         </div>
     </div>
+
+    <!-- Delete Product Confirmation Form -->
     <div class="row">
         <div class="col-12">
             <form method="POST">
@@ -40,10 +45,8 @@
     </div>
 </div>
 
-
 {% endblock %}
 
 {% block postloadjs %}
-
 
 {% endblock %}

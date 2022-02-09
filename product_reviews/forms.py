@@ -3,17 +3,20 @@ from django import forms
 from .models import ProductReview
 
 
+# choices for product review 'rating' dropdown
 RATING_CHOICES = (('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
+
 
 class ProductReviewForm(forms.ModelForm):
     '''form to add product review '''
     class Meta:
+        ''' define ProductReviewForm fields '''
+
         model = ProductReview
         fields = ('rating',
                   'title',
                   'review')
 
-        # rating = forms.Select( widget=CustomClearableFileInput)
         widgets = {
             'rating': forms.Select(choices=RATING_CHOICES)
         }

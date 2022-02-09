@@ -40,8 +40,8 @@ class Product(models.Model):
                                  null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
-    ''' Override default object name return '''
     def __str__(self):
+        ''' Override default object name return '''
         return self.name
 
     class Meta:
@@ -61,6 +61,7 @@ class ProductVariationManager(models.Manager):
         return super(ProductVariationManager, self).filter(category='colour')
 
 
+# Variable of tuples to define category choices in variation model
 VARIATION_CATEGORIES = (
     ('size', 'size'),
     ('colour', 'colour')
@@ -68,7 +69,13 @@ VARIATION_CATEGORIES = (
 
 
 class ProductVariations(models.Model):
-    ''' Model for product variations '''
+    ''' Model for product variations
+
+        References product object as foreign key.
+        Uses ProductVariationMnager to return product
+        objects within each catagory.
+    '''
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='variations')
     category = models.CharField(max_length=120, choices=VARIATION_CATEGORIES,

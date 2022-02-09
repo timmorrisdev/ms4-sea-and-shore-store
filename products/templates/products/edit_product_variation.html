@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block page_header %}
+<!-- Page header section -->
 <div class="container header-container">
     <div class="row">
         <div class="col"></div>
@@ -12,6 +13,8 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
+
+    <!-- Title section -->
     <div class="row">
         <div class="col-12 col-md-6">
             <hr>
@@ -27,9 +30,9 @@
             <h5 class="text-muted">Product Variations</h5>
             <hr>
         </div>
-
     </div>
 
+    <!-- Edit Product Variation Form -->
     <div class="row">
         <div class="col-12 col-md-6">
             <span>
@@ -38,28 +41,36 @@
             <form method="POST" action="{% url 'add_product_variation' product.id %}" class="form mb-2"
                 enctype="multipart/form-data">
                 {% csrf_token %}
+
+                <!-- Iterate through fields and render using crispy forms -->
                 {% for field in form %}
                 {% if field.name != 'image' %}
                 {{ field | as_crispy_field }}
+
+                <!-- Render standard field for use with custom widget if Image Field -->
                 {% else %}
                 {{ field }}
+
                 {% endif %}
                 {% endfor %}
 
+                <!-- Submit or Cancel -->
                 <div class="text-right">
                     <a class="btn btn-outline-black rounded-0" href="{% url 'edit_product' product.id %}">Back to
                         Product</a>
                     <button class="btn btn-black rounded-0" type="submit">Update Product Variation</button>
                 </div>
-
+            </form>
         </div>
-        </form>
 
+
+        <!-- Current Product Variations Section -->
         <div class="col-12 col-md-6">
 
             <h5 class="text-muted d-md-none">Product Variations</h5>
             <hr class="d-md-none">
 
+            <!-- Table of variations -->
             {% if product.variations.all %}
             <table class="table table-sm">
                 <thead>
@@ -71,6 +82,8 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <!-- Iterate through variations to display as table rows -->
                     {% for var in product.variations.all %}
                     <tr>
                         <td>
@@ -88,14 +101,15 @@
                         <td>
                             <a class="text-danger" href="{% url 'delete_product_variation' var.id %}">Delete</a>
                         </td>
-
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+
             {% else %}
             <p>No variations of this product found.</p>
             {% endif %}
+
         </div>
     </div>
 </div>
