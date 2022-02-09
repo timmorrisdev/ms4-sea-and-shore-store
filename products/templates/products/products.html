@@ -123,11 +123,15 @@
 
             </div>
 
+            <!-- Products section -->
             <div class="row">
+
+                <!-- Display the product cards -->
                 {% for product in page_obj %}
 
                 {% include "products/includes/product_card.html" %}
 
+                <!-- Reponsive horrizontal rule display -->
                 {% if forloop.counter|divisibleby:1 %}
                 <div class="col-12 d-sm-none mb-5">
                     <hr>

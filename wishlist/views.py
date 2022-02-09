@@ -1,5 +1,5 @@
 from django.shortcuts import (
-    render, redirect, reverse, get_object_or_404
+    render, redirect, reverse
 )
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -18,31 +18,24 @@ class Wishlist(View):
     """ Display the user's wishlsit. """
 
     def get(self, request):
-
+        ''' pass template name to the class '''
         template_name = 'wishlist/wishlist.html'
 
         return render(request, template_name)
 
 
-# @login_required
-# def wishlist(request):
-#     """ Display the user's wishlsit. """
-
-#     template = 'wishlist/wishlist.html'
-
-#     return render(request, template)
-
-
 @login_required
-def toggle_wishlist(request, product_id, path):
+def toggle_wishlist(request, product_id):
     ''' Add or remove product to user wishlist'''
 
+    # check if product exists
     try:
         product = Product.objects.get(pk=product_id)
     except Product.DoesNotExist:
         messages.error(request, 'Product not found.')
         return redirect(reverse('products'))
 
+    #check if user has a wushlist in the database, create one if not
     try:
         wishlist = UserWishlist.objects.get(user=request.user)
     except UserWishlist.DoesNotExist:
@@ -59,6 +52,7 @@ def toggle_wishlist(request, product_id, path):
                          (f'Successfully removed {product.name} '
                           f'from wishlist'))
 
+    # remove user wishlist from database if empty
     if len(wishlist.products.all()) < 1:
         wishlist.delete()
 

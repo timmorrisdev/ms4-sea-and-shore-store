@@ -33,7 +33,7 @@
 
     </div>
 
-    <!-- Edit Product Form -->
+    <!-- Edit product form -->
     <div class="row">
         <div class="col-12 col-md-6">
             <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2"
@@ -53,7 +53,7 @@
                 {% endif %}
                 {% endfor %}
 
-                <!-- Submit or Cancel -->
+                <!-- Submit or cancel -->
                 <div class="text-right">
                     <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
                     <button class="btn btn-black rounded-0" type="submit">Update Product</button>
@@ -61,7 +61,7 @@
             </form>
         </div>
 
-        <!-- Current Product Variations Section -->
+        <!-- Current product variations section -->
         <div class="col-12 col-md-6">
 
             <h5 class="text-muted d-md-none">Product Variations</h5>
