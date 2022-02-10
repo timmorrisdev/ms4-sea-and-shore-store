@@ -3,6 +3,7 @@
 {% load bag_tools %}
 
 {% block page_header %}
+<!-- Page header section -->
 <div class="container header-container">
     <div class="row">
         <div class="col"></div>
@@ -13,6 +14,8 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container mb-2">
+
+    <!-- Title section -->
     <div class="row">
         <div class="col">
             <hr>
@@ -21,9 +24,12 @@
         </div>
     </div>
 
+    <!-- Shopping bag section -->
     <div class="row">
         <div class="col">
             {% if bag_items %}
+
+            <!-- Bag details - Small screens only -->
             <div class="d-block d-md-none">
                 <div class="row">
                     <div class="col">
@@ -64,6 +70,8 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Bag details - Medium screens and up -->
             <div class="table-responsive rounded d-none d-md-block">
                 <table class="table table-sm table-borderless">
                     <thead class="text-black">

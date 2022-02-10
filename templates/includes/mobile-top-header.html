@@ -1,13 +1,15 @@
 <li class="list-inline-item">
+
+    <!-- Mobile search bar section -->
     <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <div>
                 <i class="fas fa-search fa-2x"></i>
             </div>
-            <!-- <p class="my-0">Search</p> -->
         </div>
     </a>
+    <!-- Mobile search bar -->
     <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
         <form class="form" method="GET" action="">
             <div class="input-group w-100">
@@ -24,6 +26,9 @@
         </form>
     </div>
 </li>
+
+<!-- Mobile nav links -->
+<!-- Account -->
 <li class="list-inline-item dropdown">
     <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -47,6 +52,8 @@
         {% endif %}
     </div>
 </li>
+
+<!-- Wishlist -->
 <li class="list-inline-item">
     <a class="text-black nav-link d-block d-lg-none" href="">
         <div class="text-center">
@@ -57,6 +64,8 @@
         </div>
     </a>
 </li>
+
+<!-- Shopping bag -->
 <li class="list-inline-item">
     <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none"
         href="{% url 'view_bag' %}">

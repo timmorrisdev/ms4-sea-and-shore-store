@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block page_header %}
+<!-- Page header section -->
 <div class="container header-container">
     <div class="row">
         <div class="col">
@@ -12,12 +13,10 @@
 {% endblock %}
 
 {% block content %}
+<!-- Link to all products -->
 <div class="container h-100">
     <div class="row h-100">
         <div class="col-12 my-auto pb-5 text-center">
-            <!-- <h1 class="display-4 logo-font text-black">
-                Adventure starts here
-            </h1> -->
             <div class="my-5">
                 <h4>
                     <a href="{% url 'products' %}"

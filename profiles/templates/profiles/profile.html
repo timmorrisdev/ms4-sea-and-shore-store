@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block page_header %}
+<!-- Page header section -->
 <div class="container header-container">
     <div class="row">
         <div class="col"></div>
@@ -16,14 +17,17 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
+
+    <!-- Title section -->
     <div class="row">
         <div class="col pt-4">
             <hr>
             <h2 class="logo-font ">My Profile</h2>
-            <!-- <a type="button" class="text-danger mb-2" data-toggle="modal" data-target="#deleteProfileModal">Delete</a> -->
             <hr>
         </div>
     </div>
+
+    <!-- Default delivery info section -->
     <div class="row">
         <div class="col-12 col-lg-6">
             <p class="text-muted">Default Delivery Information</p>
@@ -36,6 +40,8 @@
 
             </form>
         </div>
+
+        <!-- Order history section -->
         <div class="col-12 col-lg-6">
             <p class="text-muted">Order History</p>
             <div class="order-history table-responsive">
@@ -49,14 +55,21 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        <!-- Iterate through user orders -->
                         {% for order in orders reversed %}
                         <tr>
+                            <!-- Order number -->
                             <td>
                                 <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
                                     {{ order.order_number|truncatechars:6 }}
                                 </a>
                             </td>
+
+                            <!-- Order date -->
                             <td>{{ order.date }}</td>
+
+                            <!-- Order items -->
                             <td>
                                 <ul class="list-unstyled">
                                     {% for item in order.lineitems.all %}
@@ -68,6 +81,8 @@
                                     {% endfor %}
                                 </ul>
                             </td>
+
+                            <!-- Order total -->
                             <td>£{{ order.grand_total }}</td>
                         </tr>
                         {% endfor %}
