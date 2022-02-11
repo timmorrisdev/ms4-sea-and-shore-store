@@ -56,21 +56,51 @@ ___
 ## Design
 
 ### Wireframes
-- [Landing Page]()
+- [Landing Page](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/Home%20page.png)
+- [Product Page](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/Product%20Page.png)
+- [Product Detail](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/Product%20Detail.png)
+- [Shopping Bag](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/Shopping%20bag.png)
+- [Checkout](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/Checkout.png)
+- [User Profile](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/User%20Profile.png)
+- [Wishlist](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/Wishlist.png)
+- [Add / Edit Product](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/Add_Edit%20Product.png)
+- [Add / Edit Review](https://github.com/timmorrisdev/ms4-sea-and-shore-store/blob/main/readme_assets/wireframes/Add%20review.png)
 
-### Design Decisions Different to Wireframes
 
 ### Colour Scheme
+ - I chose an image for the home page that would be both visually beautiful, and convey the purpose of the site to the user. Then throughout the site I chose to keep the colour scheme neutral. Using contrasting black and white elements to create a clean, modern feel and user experience. 
+
 
 ### Fonts
-- Montserrat
+- I chose Montserrat from google fonts for the site as it gives good readability and has a modern asthetic.
 
 
+## Data Models and Schema
+### Models
+ - Products App
+    - Product: Holds the information for each individual product.
+    - Category: Holds the available categories for the products.
+    - Product Variations: Any variations of a specific product (sizes etc)
 
+- Checkout App
+    - Order: Holds the order information and details of the customer who placed it.
+    - Order Line Item: Each item within a specific order. 
 
+- User
+    - Created with django allauth containing the customer username, email and password.
 
-## Data Models
+- User Profile App
+    - User Profile: Holds user default delivery information
 
+- Wishlist App
+    - User Wishlist: Holds any items a specific user places into a wishlist.
+
+- Product Review App
+    - Holds any reviews added for a specific product. Details the user that left each review.
+
+### Database Diagram
+
+This is a diagram of the database show the relations between each model. It was made using [dbdiagram.io](https://dbdiagram.io/).
 
 ## Features
 
