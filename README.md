@@ -176,6 +176,93 @@ This is a diagram of the database show the relations between each model. It was 
 
     ![Product Review Section](readme_assets/features_screengrabs/product_detail_page/product_review_seciton.png)
 
+- Add Product Review
+    - If the user is logged in and has clicked to add a review to a product, the following form page will be displayed. 
+    - The same form is displayed for a user to edit a review, pre-popluated with the review data being edited.
+
+    ![Add Review Page](readme_assets/features_screengrabs/add_review_page/add_review_page.png)
+
+- Shopping Bag Page
+    - Displays the details of all items in the users shopping bag.
+    - Offers the ability to update item quantity, or remove an item from the shopping bag.
+    - Displays bag total and shipping fees, if the user has not met the free delivery threshold.
+    - Navigation buttons to either checkout, or keep shopping.
+
+    ![Shopping Bag](readme_assets/features_screengrabs/shopping_bag/shopping_bag_page.png)
+
+- Checkout Page
+    - Prompts the user to input their shipping and payment information.
+    - Displays order summary.
+
+    ![Checkout Page](readme_assets/features_screengrabs/checkout_page/checkout_page.png)
+
+    - Allows the user to save the information being entered to their profile if they are registered and logged in.
+
+    ![Save User Info](readme_assets/features_screengrabs/checkout_page/save_info.png)
+
+    - Upon successful checkout, user is redirected to a success page with an overview of the order and the shipping information.
+
+    ![Order Confirmation](readme_assets/features_screengrabs/checkout_page/order_confirmation.png)
+
+- User Profile
+    - Displays the users default infomation to be pre-populated at checkout and offers the ability to edit.
+    - Order history gives an overview of any orders placed. User can click an order to display the order confirmation for the past order.
+
+    ![User Profile Page](readme_assets/features_screengrabs/profile_page/profile_page.png)
+
+- Wishlist Page
+    - If user has added items to their wishlist, the product summary card for each item is displayed.
+
+    ![User Wishlist](readme_assets/features_screengrabs/wishlist_page/wishlsit_page.png)
+
+    - If the user has not added any items to the wishlist, the page will display feedback to  reflect this.
+
+    ![No Wishlist Items](readme_assets/features_screengrabs/wishlist_page/no_items.png)
+
+- Admin Product Management
+    - Add prodict form for admin to input a new product to the store.
+    - If 'has variations' is selected, sumbitting the form will redirect the admin to add variations of the product.
+
+    ![Add Product Form](readme_assets/features_screengrabs/product_management/add_product.png)
+
+    - Add product variations page displays existing variations and offers the admin the ability to add additional variations as well as edit and delete existing variations.
+
+    ![Add Product Variations](readme_assets/features_screengrabs/product_management/add_variation.png)
+
+    - Edit existing product form.
+    - Pre-populated with current product details.
+    - Displays any product variations and displays link to manage.
+
+    ![Edit Product](readme_assets/features_screengrabs/product_management/edit_product.png)
+
+- Allauth Registration, Sign In and Sign Out
+    - Registration page.
+    - User is required to confirm email address using a link in an automated email sent to the provided address.
+
+    ![Registration Page](readme_assets/features_screengrabs/allauth/sign_up.png)
+
+    - Sign In page
+
+    ![Sign In Page](readme_assets/features_screengrabs/allauth/sign_in.png)
+
+    - Sign Out Page
+
+    ![Sign Out Page](readme_assets/features_screengrabs/allauth/sign_out.png)
+
+- Django Messages
+    - The user is given feedback on any action taken on the site via django message popups using Bootstrap toasts.
+    - Item successfully added to bag.
+
+    ![Add to bag](readme_assets/features_screengrabs/messages/add_bag_message.png)
+    
+    - Order confirmation
+
+    ![Order confirmation](readme_assets/features_screengrabs/messages/order_confirmation_mesaage.png)
+
+    - Item successfully added to wishlist.
+    
+    ![Wishlist Add](readme_assets/features_screengrabs/messages/wishlist_messge.png)
+
 
 
 ### Other Features
