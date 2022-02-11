@@ -102,9 +102,80 @@ ___
 
 This is a diagram of the database show the relations between each model. It was made using [dbdiagram.io](https://dbdiagram.io/).
 
+![Diagram of the database](/readme_assets/SeaShore_DBdiagram.png)
+
 ## Features
 
-### Feature....
+### Home Page
+- Overview
+    - Large 'hero' image is visually striking as well as providing the user with context to the kind of store it is.
+    - Clear navigation and streamlined design make it easy for the user to make decisions about their journey through the site.
+
+    ![Home Page Overview](readme_assets/features_screengrabs/home_page/home_page.png)
+
+
+
+- Navigation and Search
+    - Search function for all products and navigation links with drop-down menus for each category 'group'. 
+
+    ![Home Page Navigation](readme_assets/features_screengrabs/home_page/home_navigation.png)
+
+- Site Feature Icons
+    - Clear, bold icons to allow the user to navigate user and shopping bag features.
+
+    ![Site feature Icons](readme_assets/features_screengrabs/home_page/info_icons.png)
+
+- Browse Button
+    - Main 'onward-journey' prompt for the user if they are not looking for a specific product using the navigation or search.
+
+    ![Browse Button](readme_assets/features_screengrabs/home_page/browse_button.png)
+
+
+### Products Page
+
+- Overview
+    - Product page displays summary cards for relevant products dependent on criteria entered by the user. Either search parameter or category navigation.
+
+    ![Product Page Overview](readme_assets/features_screengrabs/products_page/products_page_overview.png)
+
+- Product Summary Card
+    - Summary of product while user is browsing. Delivers an overview of the product details including image, name, price, rating, and wishlist status via star icon.
+
+    ![Product Summary Card](readme_assets/features_screengrabs/products_page/product_summary.png)
+
+- Search Result Feedback
+    - The user is provieded detail of how many products they are currently viewing based on their criteria.
+
+    ![Search Results Feedback](readme_assets/features_screengrabs/products_page/search_result_feedback.png)
+
+- Sort Selector
+    - Dropdown menu allowing the user to determine the ordering of the products they are viewing to make the results meet their needs more easily.
+
+    ![Sort Selector](readme_assets/features_screengrabs/products_page/sort_dropdown.png)
+
+- Pagination
+    - This area of the site uses the pagination feature included in the ListView clas based view in Django. It allows the user to navigate their search results in a more manageable way.
+
+    ![Pagination](readme_assets/features_screengrabs/products_page/pagination.png)
+
+
+### Product Detail Page
+
+- Product Details Section
+    - Provides the user with a detailed overview of the specific product. 
+    - Product rating uses the average of any ratings issued in product reviews and is calculated in the product review app views.
+    - Includes the buttons and menus for the user to select a specific size (if applicable) and add a defined quantity of the item to the shopping bag.
+    - 'Star' icon informs the user if the proudct is in their wishlist and acts as a toggle button to add / remove it to the wishlist.
+
+    ![Product Detail Section](readme_assets/features_screengrabs/product_detail_page/product_details_section.png)
+
+- Products Review Section
+    - Displays any user reviews for the specific product.
+    - If the user in logged in, the 'add review' link is available and active.
+    - Edit / Delete buttons available to the review author. 
+
+    ![Product Review Section](readme_assets/features_screengrabs/product_detail_page/product_review_seciton.png)
+
 
 
 ### Other Features

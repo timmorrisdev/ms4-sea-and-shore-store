@@ -20,8 +20,3 @@ $('.remove-item').click(function (e) {
             location.reload();
         });
 })
-
-
-$('.btt-link').click(function (e) {
-    window.scrollTo(0, 0)
-})
