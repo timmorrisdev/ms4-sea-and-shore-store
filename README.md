@@ -8,7 +8,7 @@ ___
 
 
 
-[See the live site here!]()
+[See the live site here!](https://sea-and-shore-store.herokuapp.com/)
 
 ___
 # User Experience (UX)

@@ -80,6 +80,14 @@ body {
     color: #000 !important;
 }
 
+.text-white {
+    color: #fff !important;
+}
+
+.text-shadow {
+    text-shadow: 2 2 black !important;
+}
+
 .border-black {
     border: 1px solid black !important;
 }
@@ -291,10 +299,6 @@ input[name='q']::placeholder {
 .product-container {
     overflow: hidden;
 }
-
-/* .dropdown:hover>.dropdown-menu {
-    display: block;
-  } */
 
 .variations-table {
     border-top: none !important;
