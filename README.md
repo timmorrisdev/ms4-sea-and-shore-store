@@ -693,9 +693,29 @@ ___
 # Credits
 ## Code
 
+- The code and concept for this project is based around the 'Boutique Ado' learning walkthrough project by the Code Insitute.
+- The following youtube videos were used as additional learning for aspects of the code.
+    - [Very Academy ecommerce wishlist](https://www.youtube.com/watch?v=OgA0TTKAtqQ)
+    - [Just Django Class Based views](https://www.youtube.com/watch?v=S1wMmFFefRM)
+    - [Coding Point ecommerce walkthrough](https://www.youtube.com/watch?v=UjisbVs6gww)
+    - [Dennis Ivanov Class Based views](https://www.youtube.com/watch?v=RE0HlKch_3U)
+- [Stack Overflow](https://stackoverflow.com/) was used extensively when problem solving. Specifically the following threads.
+    - [Check if image url exists](https://stackoverflow.com/questions/10543940/check-if-a-url-to-an-image-is-up-and-exists-in-python)
+    - [Add wishlist](https://stackoverflow.com/questions/56580696/how-to-implement-add-to-wishlist-for-a-product-in-django)
+    - [Specify login required redirect](https://stackoverflow.com/questions/3578882/how-to-specify-the-login-required-redirect-url-in-django)
+    - [Select distinct values from table field](https://stackoverflow.com/questions/2466496/select-distinct-values-from-a-table-field)
+    - [Redirect to same page after POST request](https://stackoverflow.com/questions/39560175/redirect-to-same-page-after-post-method-using-class-based-views)
+
+- The [Django documentation](https://docs.djangoproject.com/en/4.0/) was used a lot while working on the project. Especially when researching class based views.
+
 ## Content
 
+- Product information taken from the existing ecommerce store [Surfdome](https://www.surfdome.com/).
+
 ## Media
+
+- Product images downloaded from [Surfdome](https://www.surfdome.com/) ecommerce store.
+- Background image by [Will Truettner from unsplash](https://unsplash.com/photos/Rk-JT2OypZA).
 
 ## Acknowledgements
 - Thank you to my mentor, Rohit Sharma for all your guidance and support.
