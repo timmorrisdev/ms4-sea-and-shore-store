@@ -536,12 +536,146 @@ In order to deploy the app via [heroku](https://dashboard.heroku.com/apps), the 
     git push heroku main
     ```
 
+- On Heroku.com, navigate to the deploy tab of the app dashboard to locate the project Github repository and enable automatic deployment from future pushes to Github.
 
+### Amazon Web Services (AWS)
+
+Amazon Web Services was used to host the static files and media files for the site.
+
+- Follow the steps on the [AWS website](https://aws.amazon.com/) to create a new account and sign in.
+
+- Search for and navigate to the S3 service and follow the following steps to create a new 'bucket'
+    - In the S3 dashboard, click the 'create bucket' button.
+    - Give the bucket a name, select the region nearest to your location and un-check the 'block public access' settings checkbox.
+    - Hit 'create bucket'
+
+- Configure the properties for the bucket.
+    - In the properties tab of the bucket, navigate to the 'Static website hosting' section and click edit.
+    - Enable Static website hosting using the checkbox.
+    - Input the default index and error documents as 'index.html' and 'error.html'.
+    - Save changes.
+
+- Configure the permissions for the bucket.
+    - In the permissions tab of the bucket.
+    - Select edit in the Cross-origin resource sharing(CORS) section and
+     pPaste the following code into the CORS configuration section.
+    ```
+    [
+        {
+            "AllowedHeaders": [
+                "Authorization"
+            ],
+            "AllowedMethods": [
+                "GET"
+            ],
+            "AllowedOrigins": [
+                "*"
+            ],
+            "ExposeHeaders": []
+        }
+    ]
+    ```
+    - Back in the permissions menu, hit edit on the bucket policy section and select 'generate policy'.
+        - Select policy type of 'S3 bucket policy'
+        - Allow all principles by entering a '*' in the Principal field.
+        - Select 'get object' from the action dropdown.
+        - Copy the 'arn' from the edit bucket policy page and paste into the Amazon Resource Name (ARN) field.
+        - Click 'add statement'
+        - Click generate policy and copy the code.
+        - Paste the code into the policy field in the edit bucket policy section, adding a '/*' to the recource line.
+        - Hit save.
+    
+
+    - Navigate to the 'edit access control list (ACL) section and grant 'list' access for everyone by selecting the checkbox.
+
+- Create a user to access the S3 bucket using IAM.
+    - Navigate to the IAM page from the AWS dashboard.
+    - Create group.
+        - Select 'group' from the menu and click to create a new group, following the instructions to name and then create.
+    - Create policy
+        - Select 'policies' from the menu and click 'create policy'.
+        - Select the 'JSON' tab and click 'import managed bucket'.
+        - Search for, and import the 'S3 full access' policy.
+        - Copy the ARN from the bucket policy section and paste this in as the 'Resource' value.
+        - Click 'review policy' and give it a name and description and hit 'create policy.
+    - Add policy to group.
+        - Navigate to the groups menu and select the group.
+        - Click 'attach policy', search for the newly-created policy from the previous step.
+        - Selct the policy using the checkbox and click 'attach policy'
+    - Create user
+        - Select 'users' from the menu and click 'add user'.
+        - Name the user and grant programatic access using the checkbox.
+        - Select the group created in the previous steps.
+        - Click through to the end of the options and click 'create user'
+        - Download and save the user CSV file.
+
+- Connect Django to S3
+    - Install packages Boto3 and Django storages and add to our requirements.txt file.
+    ```
+    pip3 install boto3
+    ```
+    ```
+    pip3 install django-storages
+    ```
+    ```
+    pip3 freeze > requirements.txt
+    ```
+    - Add 'storages' to the installed apps in settings.py.
+    - Add the following settings to settings.py. Note the 'USE_AWS' environment variable will be added to Heroku to allow use of AWS only when desirable.
+    ```python
+    if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
+    # Bucket Config
+    AWS_STORAGE_BUCKET_NAME = '[bucket name]'
+    AWS_S3_REGION_NAME = 'eu-west-2'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    ```
+    - Add the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' to Heroku with the values found the user CSV file downloaded from the AWS setup.
+
+    - Create custom_storages.py at the top-level of the project and input the locatioons for Django to store the files.
+    ```python
+    from django.conf import settings
+    from storages.backends.s3boto3 import S3Boto3Storage
+
+
+    class StaticStorage(S3Boto3Storage):
+        location = settings.STATICFILES_LOCATION
+
+
+    class MediaStorage(S3Boto3Storage):
+        location = settings.MEDIAFILES_LOCATION
+    ```
+
+- With all these settings complete, remove the 'DISABLE_COLLECTSTATIC variable from Heroku and AWS is ready to use.
+
+- Add media to AWS
+    - Navigate to the S3 bucket on the AWS site.
+    - Click to create a new folder and name it 'media'
+    - Within the folder, click the button to upload files and add any relevant site media.
+    - Under permissions, select to grant public read access.
+ 
 
 
 ## Forking the repository in GitHub
 Forking the repository creates a copy of the original repository in your own account to allow changes to be made without affecting the original repository.
-1. Log in to GitHub and navigate to the GitHub repository page [here](https://github.com/TimMorrisDev/MS2-song-remixer).
+1. Log in to GitHub and navigate to the GitHub repository page [here](https://github.com/timmorrisdev/ms4-sea-and-shore-store).
 2. In the top-right of the page, below the user avatar, locate the "fork" button.
 3. Click the "fork" button and you should now have a copy of the repository in your own account. 
 
