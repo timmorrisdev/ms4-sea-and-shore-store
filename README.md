@@ -1,6 +1,6 @@
-# Sea & Shore
-___
-![Responsive Mockup of site]()
+# Sea & Shore Store
+
+![Responsive Mockup of site](readme_assets/responsive_site.png)
 
 
 # Project Synopsis
@@ -260,7 +260,7 @@ This is a diagram of the database show the relations between each model. It was 
     ![Order confirmation](readme_assets/features_screengrabs/messages/order_confirmation_mesaage.png)
 
     - Item successfully added to wishlist.
-    
+
     ![Wishlist Add](readme_assets/features_screengrabs/messages/wishlist_messge.png)
 
 
@@ -279,33 +279,59 @@ ___
 - [CSS3](https://en.wikipedia.org/wiki/CSS)
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 
+## Django and Associated Extensions
+
+- [Django](https://www.djangoproject.com/)
+    - Django was was used to create the project and code infrastructure. Django templating language was used when passing data between the Front-end and Back-end.
+
+- [Django Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html)
+    - Allauth was used to create user registration and login functionality.
+
+- [Django Countries](https://pypi.org/project/django-countries/)
+    - Django Countries was used for formatting of the 'Country' field in the checkout form and in the default user info within the profile section.
+
+-[Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
+    - Used to format the default django form fields across the site.
+
+- [Django Coverage](https://pypi.org/project/django-coverage/)
+
 
 ## Frameworks, Libraries & Programs Used
 
-- [Django]()
-
 - [jQuery](https://jquery.com/)
-    - I used jQuery in my Javascript code for the song remixer game. I mostly made use of event handlers to integrate user interaction with the site with my Javascript functions controlling the features offered to the user.
-    - jQuery was also used as part of Materialize and is used for Javascript plugins such as the modals.
+    - jQuery was used across the site when additional steps were needed to pass appropriate data to the back end, as well as when overridng some of the default behaviours and styling of django elements
+    - jQuery was also used as part of Bootstrap and is used for Javascript plugins such as the modals.
+
+- [Heroku](https://www.heroku.com/)
+    - Heroku was used to deploy the site. The Heroku Postgres add-on was also used to create the production database for the project.
+
+- [Stripe](https://stripe.com/gb)
+    - Stripe was used to handle payments made on the site. Stripes webhooks were also used to offer payment backup in the event of payment failure. 
+
+- [AWS(Amazon Web Services)](https://aws.amazon.com/)
+    - Amazon Web Services was used to host the static files and media files used by the site.
 
 - [Google Fonts](https://fonts.google.com/)
-    - Google Fonts was used to import the 'Montserrat', and 'Tourney' fonts, which were used throughout the site.
+    - Google Fonts was used to import the 'Montserrat' font, which was used throughout the site.
+
 - [Font Awesome](https://fontawesome.com/)
-    - Used to source images for the transport section of the remixer.
+    - Used to source icons used across the site.
 
 - [Git](https://git-scm.com/)
     - Git was used for version control using the terminal in Gitpod to 'add' and 'commit' to Git and to push changes to the GitHub repository using 'git push'.
 
 - [Gitpod](https://gitpod.io/)
     - Gitpod.io was used as the primary development environment when coding for the site. It's terminal was used to preview the site via temporary server, and for version control using Git commands.
+
 - [Github](https://github.com/)
-    - GitHub was used to store the code pushed from Gitpod and as deployment for the [published site.](https://timmorrisdev.github.io/MS2-song-remixer/)
+    - GitHub was used to store the code pushed from Gitpod and as deployment for the [published site.](https://sea-and-shore-store.herokuapp.com/)
+
 - [Balsamiq](https://balsamiq.com/)
     - Balsamiq was used to create the wireframes for the site while in the 'skeleton' stage of my UX process.
+
 - [Autoprefixer](http://autoprefixer.github.io/)
     - Autoprefixer was used in the final stage of development to parse CSS code and add vendor prefixes.
-- [Coloors.co](https://coolors.co/)
-    - Used to source colour palettes used throughout the site.
+
 - [Am I Responsive?](http://ami.responsivedesign.is/#)
     - Used to check responsiveness across different device sizes. 
 
@@ -362,7 +388,155 @@ I tested the site across multiple devices using different browsers.
 
 # Deployment
 
-The project was deployed to Heroku and can be found [here]()
+The project was deployed to Heroku and can be found [here](https://sea-and-shore-store.herokuapp.com/).
+
+The following steps were taken throughout the project to achieve deployment of the live site.
+
+## Create Github Repository
+
+- The repository was created using the green 'new' button on [Github](https://github.com/) and selecting the Code Institute Full Tempalte from the dropdown menu. 
+- Once created I was able to open the repository in Gitpod using the installed extension. From this point on, the command line in Gitpod was used for version control with git add, commit and push commands.
+
+
+## Create Django Application
+In the terminal type the following commands to create and initialise the project:
+    
+- Install Django
+    ```
+    pip3 install django
+    ```
+
+- Create project-level application
+    ```
+    django-admin startproject [project_name] .
+    ```
+
+- Create Superuser to access the Django admin panel. Follow the prompts to input a username, email and password.
+
+Note: This step will be repeated when deploying to Heroku and migrating the database to Postgres.
+
+    ```
+    python3 manage.py createsuperuser
+    ```
+- Install apps to impliment site features.
+
+    ```
+    python3 manage.py startapp [app_name]
+    ```
+
+## Deployment to Heroku
+
+In order to deploy the app via [heroku](https://dashboard.heroku.com/apps), the following steps must be taken. 
+
+### Heroku
+- Navigate to [heroku](https://heroku.com/) and create a new app in your dashboard.
+
+- Assign an app name and region and hit 'create app'.
+
+- Navigate to the resourses tab from the app dashboard, search for Postgres and select to add to the project.
+
+### Django
+
+- To use Postgress, install the following packages.
+
+    ```
+    pip3 install dj_database_url
+    ```
+    ```
+    pip3 install psycopg2_binary
+    ```
+- Add the packages to the requirements.txt file using the following command.
+
+    ```
+    pip3 freeze > requirements.txt
+    ```
+
+- In settings.py:
+    - import dj_database_url.
+
+    ```python
+    import dj_database_url
+    ```
+    - Replace settings for the development database with the following code. Note that the database url is obtained using an environment variable set up in Heroku to avoid exposing the database when pushing to Github. The database settings were also placed in a conditional statement to allow use of development database if necessary.
+
+    ```python
+    if 'DATABASE_URL' in os.environ:
+        DATABASES = {
+            'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            }
+        }
+    ```
+
+- Create fixtures files to be installed in the new database. FOr my project I required data already added for the Product, Category and ProductVariation models.
+    ```
+
+        python3 manage.py dumpdata products.Product > products.json
+
+        python3 manage.py dumpdata products.Category > category.json
+
+        python3 manage.py dumpdata products.ProductVariations > product_variations.json
+    ```
+
+- Migrate the project models to database.
+    ```
+    python3 manage.py migrate
+    ```
+
+- Use the created fixtures files to add the product data to the database. Note that the order is important to allow model relationships to be made corectly.
+
+    ``` 
+    python3 manage.py loaddata category
+    python3 manage.py loaddata products
+    python3 manage.py loaddata product_variations
+    ```
+- Create superuser for the production database and admin panel. Follow the prompts to input a username, email and password.
+
+    ```
+    python3 manage.py createsuperuser
+    ```
+
+- The Postgress database is now set up and configured.
+
+- Install Gunicorn and create Procfile.
+    ```
+    pip3 install gunicon
+    ```
+    ```
+    touch Procfile
+    ```
+- Within the Procfile, place the following code.
+    ```
+    web: gunicorn sea_and_shore.wsgi:application
+    ```
+
+- Login to Heroku and prevent static files being collected until AWS is setup.
+    ```
+    heroku login -i
+    ```
+    ```
+    heroku config:set DISABLE_COLLECTSTATIC=1 --app <app name>
+    ```
+
+- Add Heroku to the allowed hosts in settings.py. 'Localhost' is kept in place for use in future development.
+    ```python
+    ALLOWED_HOSTS = ["[heroku_app_name].herokuapp.com", "localhost"]
+    ```
+
+- Set up remote to Heroku app and push files to Heroku.
+    ```
+    heroku git: remote -a [heroku_app_name]
+    ```
+    ```
+    git push heroku main
+    ```
+
+
 
 
 ## Forking the repository in GitHub
@@ -373,114 +547,13 @@ Forking the repository creates a copy of the original repository in your own acc
 
 ## Making a Local Clone
 Details of how to make a local copy of the GutHub repository can be found [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository). To clone using HTTPS follow these steps.
-1. Navigate to the GitHub repository [here](https://github.com/TimMorrisDev/MS2-song-remixer).
+1. Navigate to the GitHub repository [here](https://github.com/timmorrisdev/ms4-sea-and-shore-store).
 2. Click the "Code" drop-down menu above the list of files.
 3. Copy the HTTPS address to the clipboard using the button provided.
 4. Open Terminal.
 5. Change the current directory to the location you wish to copy the directory.
 6. Type 'git clone' and then paste the HTTPS url you copied earlier. 
 7. Press enter and your local clone will be created. 
-
-## Create MongoDB database
-My data was stored in a [MongoDB](https://cloud.mongodb.com/) collection set up using the following steps.
-- Sign up / Sign In to mongodb and create a new cluster.
-- Select 'collections' from the cluster dashboard.
-- Click 'create database', and create database name and collection name.
-- Click 'create collection' for any additional data collections needed for the app.
-
-## Create Flask Application and install pymongo
-In the terminal type the following commands to install the required packages:
-    
-- Install Flask
-    ```
-    pip3 install Flask
-    ```
-
-- Install PyMongo
-    ```
-    pip3 install pymongo
-    ```
-- Install flask-pymongo
-    ```
-    pip3 install flask-pymongo
-    ```
-- Install dnspython
-    ```
-    pip3 install dnspython
-
-Setup app
-- Create `app.py` and `env.py` using the terminal
-    ```
-    touch app.py
-    touch env.py
-    ```
-
-- Create gitignore file using the terminal to keep `env.py `from being pushed to github
-    ```python
-    touch env.py
-    ```
-
-- Within the gitignore file add `env.py` and `__pycache__/`.
-    ```python
-    env.py
-    __pycache__/
-    ```
-
-Set up environment variables and flask instance
-- Within `env.py` add the following environment variables:
-
-    ```python
-    os.environ.setdefault("IP", "0.0.0.0")
-    os.environ.setdefault("PORT", "5000")
-    os.environ.setdefault("SECRET_KEY", "YOUR SECRET KEY")
-    os.environ.setdefault("MONGO_URI", "YOUR MONGO URI")
-    os.environ.setdefault("MONGO_DBNAME", "YOUR DATABASE NAME")
-    ```
-
-    - I used [randomkeygen]() to generate my secret key. 
-    - To get your mongodb URI, go to your cluster dashboard and hit connect. Select your version of python and copy the string to the clipboard.
-
-Within `app.py` import os, Flask and environment variables and create instance of Flask and PyMongo.
-```python
-    import os
-    from flask import Flask
-  
-    if os.path.exists("env.py"):
-        import env
-    
-    app = Flask(__name__)
-
-    app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
-    app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-    app.secret_key = os.environ.get("SECRET_KEY")
-
-    mongo = PyMongo(app)
-```
-
-## Setting up the heroku app
-In order to deploy the app via [heroku](https://dashboard.heroku.com/apps), the following steps must be taken. 
-
-- In the terminal, create requirements.txt and Procfile for Heroku to run correctly
-    ```
-    pip3 freeze --local > requirements.txt
-    ```
-    ```
-    echo web: python app.py > Procfile
-    ```
-- Push your files to gitHub
-- Navigate to [heroku](https://heroku.com/) and create a new app in your dashboard.
-- Assign an app name and region and hit 'create app'.
-- In your dashboard, click to connect your gitHub and then locate the correct repository to be deployed.
-- Click on the settings tab and then click 'reveal config vars' in order to input the data hidden in `env.py` as follows.
-        
-        IP                  0.0.0.0
-        MONGO.DBNAME        sustainable_supper_club
-        MONGO_URI           MONGO URI copied from env.py
-        PORT                5000
-        SECRET_KEY          SECRET_KEY copied from env.py
-
-- Click 'enable automatic deploy' in the app dashboard.
-- Click view to see the deployed site!
 
 ___
 # Credits
