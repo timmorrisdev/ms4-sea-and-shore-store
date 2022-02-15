@@ -35,7 +35,7 @@ def toggle_wishlist(request, product_id):
         messages.error(request, 'Product not found.')
         return redirect(reverse('products'))
 
-    #check if user has a wushlist in the database, create one if not
+    # check if user has a wushlist in the database, create one if not
     try:
         wishlist = UserWishlist.objects.get(user=request.user)
     except UserWishlist.DoesNotExist:

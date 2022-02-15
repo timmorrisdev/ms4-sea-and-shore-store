@@ -58,7 +58,8 @@ class ProductList(ListView):
                                "You didn't enter any search criteria!")
             queries = Q(name__icontains=query) | Q(
                 description__icontains=query) | Q(brand__icontains=query)
-            queryset = Product.objects.filter(queries).order_by(self.get_ordering())
+            queryset = Product.objects.filter(
+                        queries).order_by(self.get_ordering())
 
         return queryset
 
