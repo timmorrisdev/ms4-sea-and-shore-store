@@ -112,12 +112,11 @@
                                                 </span>
                                             </button>
                                         </div>
-                                        <label hidden>Item Quantity
-                                            <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
-                                                name="quantity" value="1" min="1" max="99"
-                                                data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}"
-                                                data-item_id="{{ product.id }}">
-                                        </label>
+                                        <label for="id_qty_{{ product.id }}" hidden>Item Quantity</label>
+                                        <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
+                                            name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}"
+                                            id="id_qty_{{ product.id }}" data-item_id="{{ product.id }}">
+
                                         <div class="input-group-append">
                                             <button
                                                 class="increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}"

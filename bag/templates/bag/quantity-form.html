@@ -16,12 +16,12 @@
             </div>
 
             <!-- Item quantity display -->
-            <label hidden>Item Quantity
-                <input class="form-control form-control-sm qty_input id_qty_{{ item.item_id }} 
+            <label for="item-quantity" hidden>Item Quantity</label>
+            <input class="form-control form-control-sm qty_input id_qty_{{ item.item_id }} 
                 {% if item.size %}size_{{ item.item_id }}_{{ item.size }}{% endif %}" type="number" name="quantity"
-                    value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}"
-                    data-size="{{ item.size }}">
-            </label>
+                value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}"
+                data-size="{{ item.size }}" id="item-quantity">
+
 
             <!-- Increment button -->
             <div class="input-group-append">

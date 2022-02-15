@@ -359,6 +359,10 @@ Other than those issues, my python code was fully PEP8 compliant.
 
 ## Lighthouse Testing
 
+Products - quantity input label, increment / decrement button labels
+
+add / edit - custom clearable file input widget for image field causing accessibility issues
+
 ## Testing UX User Stories
 
 ### Unregistered user goals
