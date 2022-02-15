@@ -67,8 +67,7 @@
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <a href="{% url 'edit_product' product.id %}">Edit</a> |
-                    <a type="button" class="text-danger" data-toggle="modal"
-                        data-target="#deleteProductModal">Delete</a>
+                    <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete</a>
                 </small>
                 {% endif %}
 
@@ -143,7 +142,6 @@
                                 <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5"
                                     value="Add to Bag">
 
-
                                 <!-- Wishlist icon to display item wishlist status -->
                                 <a href="{% url 'toggle_wishlist' product.id %}" class="mt-5 ml-3"
                                     aria-label="wishlist-toggle">
@@ -162,6 +160,7 @@
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
 
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -202,7 +201,7 @@
                         {% if user == review.reviewer %}
                         <small class="ml-3">
                             <a href="{% url 'edit_product_review' review.id %}">Edit</a> |
-                            <a type="button" class="text-danger" data-toggle="modal"
+                            <a href="#" class="text-danger" data-toggle="modal"
                                 data-target="#deleteReview{{ review.id }}Modal">Delete</a>
                         </small>
                         {% endif %}
@@ -231,7 +230,6 @@
                     <div class="modal-content text-black">
                         <div class="modal-header">
                             <h5 class="modal-title">Delete Review!</h5>
-                            </button>
                         </div>
                         <div class="modal-body">
                             <p>Are you sure? This action cannot be undone!</p>
@@ -239,7 +237,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-black rounded-0"
                                 data-dismiss="modal">Cancel</button>
-                            <a type="button" class="btn btn-danger" href="{% url 'delete_product_review' review.id %}"
+                            <a class="btn btn-danger" href="{% url 'delete_product_review' review.id %}"
                                 id="{{ review.id }}">Yes,
                                 Delete</a>
                         </div>
@@ -253,7 +251,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 {% endblock %}
 
