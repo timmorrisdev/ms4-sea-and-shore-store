@@ -359,17 +359,139 @@ Other than those issues, my python code was fully PEP8 compliant.
 
 ## Lighthouse Testing
 
-Products - quantity input label, increment / decrement button labels
+I ran lighthouse testing across each area of the site. The results and details of any issues resolved are below.
 
-add / edit - custom clearable file input widget for image field causing accessibility issues
+### Index.hmtl
+- Accessibility issue relating to 'a' element label duplication. Most likely an oversight when copying the navigation dropdown menus for category browsing.
+
+![Lighthouse Index.html](readme_assets/lighthouse_tests/lighthouse_index.png)
+
+### Products.html
+
+![products.html](readme_assets/lighthouse_tests/lighthouse_products.png)
+
+### Product_detail.html
+
+- Missing label for quantity input.
+- Missing names on decrement and increment buttons in quantity section.
+
+![product_detail.html](readme_assets/lighthouse_tests/lighthouse_product_detail.png)
+
+### Bag.html
+
+- Missing label for quantity input.
+- Missing names on decrement and increment buttons in quantity section.
+
+![bag.html](readme_assets/lighthouse_tests/lighthouse_bag.png)
+
+### Checkout.html
+
+![checkout.html](readme_assets/lighthouse_tests/lighthouse_checkout.png)
+
+
+### Checkout_success.html
+
+![checkout_success.html](readme_assets/lighthouse_tests/lighthouse_checkout_success.png)
+
+### Profile.html
+
+![profile.html](readme_assets/lighthouse_tests/lighthouse_profile.png)
+
+### Wishlist.html
+
+![wihslist.html](readme_assets/lighthouse_tests/lighthouse_wishlist.png)
+
+### Add_product_review.html
+
+![wihslist.html](readme_assets/lighthouse_tests/lighthouse_review.png)
+
+### Add_product.html
+- Unresolved accessibility issues with image field generated with the 'custom clearable file input' widget.
+
+![add_product.html](readme_assets/lighthouse_tests/lighthouse_add_product.png)
+
+### Edit_product.html
+- Unresolved accessibility issues with image field generated with the 'custom clearable file input' widget.
+
+![edit_product.html](readme_assets/lighthouse_tests/lighthouse_edit_product.png)
+
+### Add_product_variation.html
+- Unresolved accessibility issues with image field generated with the 'custom clearable file input' widget.
+
+![add_product_variation.html](readme_assets/lighthouse_tests/lighthouse_variations.png)
+
 
 ## Testing UX User Stories
 
 ### Unregistered user goals
+- As an unregistered user, I should be able to see what the store is selling and easily understand the kind of products on offer.
+    - The home page clearly outlines the type of product range availble to the customer via the category menu headings, the store name, and store 'ethos' heading.
+    - The hero image gives a clear idea to the user the ethos of the store.
+
+- As an unregistered user, I should be able to navigate through the website easily to explore the different features.
+    - Features and areas of the site are clearly labelled throughout with the assistance of recognised icons to represent different features and links.
+
+- As an unregistered user, I should be able to navigate through all the products sold in the store using clear and intuitive menus and categories.
+    - Categories are clearly laid out.
+    - Product results easily re-ordered to meet the users needs.
+
+- As an unregistered user, I should be able to search the product range.
+    - Search functionality available from any location on the site.
+
+- As an unregistered user, I should be able to sort any product results by price, rating, or brand.
+    - The sort dropdown on the products page allows for users to order products.
+    - Individual brands can be browsed using the main navigation dropdown.
+
+- As an unregistered user, I should be able to add items to my basket and receive real-time, useful feedback when I interact with the website.
+    - Adding items to the basket can be done as an unregisterd user.
+    - Message 'toasts' are displayed whenever there is meaningful user interaction with the site.
+
+- As an unregistered user, I should be able to edit the items in my basket and receive feedback when something has changed.
+    - The bag page allows users to edit quantity or remove items from shopping bag.
+
+- As an unregistered user, I should be able to check out as a guest user of the website.
+    - Unregistered users are able to checkout and complete a purchase.
+
+- As an unregistered user, I should be able to receive email confirmation of my order. 
+    - Automated emails are sent to the user-provided address upon checking out.
+
+- As an unregistered user, I should be able to sign up and store my information to a personal profile in order to streamline future visits.
+    - User registration available throughout the site.
+    - Prompt via checkbox to store user information on checkout.
 
 ### Registered user goals
 
+- As a registered user, I should be able to log in to my profile to make my experience more personal.
+    - Users can log in and view their profile.
+
+- As a registered user, I should be able save items to a wish-list for future purchase consideration. 
+    - Wishlist status of items clear displayed for each product and wishlist creation is automatic upon user input.
+
+- As a registered user, I should be able to edit my default delivery and payment information. 
+    - User can edit information on their profile page. 
+
+- As a registered user, I should be able to see and review my past orders.
+    - Past orders are displayed on the user profile page.
+
+- As a registered user, I should be able to rate and leave reviews for products on the site.
+    - Product ratings are clearly displayed and leaving a review for a proudct is available to any user who is logged in.
+
+- As a registered user, I should be able to contact the business owner with any queries I might have.
+    - Future dev?
+
 ### Admin user goals
+
+- As an admin user, I should be able to add, edit and delete items from the product range.
+    - Superusers of the site can access CRUD functionality for products directly via the site, or via the django admin panel.
+
+- As an admin user, I should have access to an admin section to see details of users and orders.
+    - Superusers of the site can log in to the django admin panel to see details.
+
+- As an admin user, I should be able to offer incentive to make larger purchases by offering free delivery over a set amount.
+    - A 'free delivery threshold' can be set and clearly displayed to the user.
+
+- As an admin user, I should be able to interact with my frequent customers using the blog and comments section and offer advice and real-world testing of selected products in the store.
+    - Future dev?
 
 ## Peer Code Review
 
