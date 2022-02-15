@@ -59,7 +59,7 @@
 
                 <!-- Wishlist icon, solid if item in user wishlist -->
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <a href="{% url 'toggle_wishlist' product.id %}">
+                    <a href="{% url 'toggle_wishlist' product.id %}" aria-label="wishlist-toggle">
                         {% if  product not in wishlist_items %}
                         <div class="text-black wishlist-icon" title="Add to wishlist">
                             <i class="far fa-star fa-3x"></i>

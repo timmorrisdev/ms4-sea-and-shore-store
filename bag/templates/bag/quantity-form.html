@@ -8,7 +8,7 @@
             <div class="input-group-prepend">
                 <button class="decrement-qty btn btn-sm btn-black rounded-0 decrement-qty_{{ item.item_id }} 
                     {% if item.size %}decrement-size_{{ item.item_id }}_{{ item.size }}{% endif %}"
-                    data-item_id="{{ item.item_id }}" data-size="{{ item.size }}">
+                    data-item_id="{{ item.item_id }}" data-size="{{ item.size }}" aria-label="decrement-button">
                     <span>
                         <i class="fas fa-minus fa-sm"></i>
                     </span>
@@ -16,16 +16,18 @@
             </div>
 
             <!-- Item quantity display -->
-            <input class="form-control form-control-sm qty_input id_qty_{{ item.item_id }} 
+            <label hidden>Item Quantity
+                <input class="form-control form-control-sm qty_input id_qty_{{ item.item_id }} 
                 {% if item.size %}size_{{ item.item_id }}_{{ item.size }}{% endif %}" type="number" name="quantity"
-                value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}"
-                data-size="{{ item.size }}">
+                    value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}"
+                    data-size="{{ item.size }}">
+            </label>
 
             <!-- Increment button -->
             <div class="input-group-append">
                 <button class="increment-qty btn btn-sm btn-black rounded-0 increment-qty_{{ item.item_id }} 
                     {% if item.size %}increment-size_{{ item.item_id }}_{{ item.size }}{% endif %}"
-                    data-item_id="{{ item.item_id }}" data-size="{{ item.size }}">
+                    data-item_id="{{ item.item_id }}" data-size="{{ item.size }}" aria-label="increment-button">
                     <span>
                         <i class="fas fa-plus fa-sm"></i>
                     </span>
