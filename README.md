@@ -345,7 +345,7 @@ I was also sure to deploy the site to Heroku early in development to allow for r
 ## W3C Markup, CSS Validation & JSHint Validation
 I used the W3C Markup, CSS Validator and JSHint Validator Services to check and validate each page throughout the site to check for errors. 
 ### [Markup Validation Service](https://validator.w3.org/)
-The validator found the following issues for me to address.
+The HTML code on the site passed through the validator showing errors to do with the implimentation of the Django templating language.
 
 ### [CSS Validation Service](https://jigsaw.w3.org/css-validator/)
 My CSS file style.css passed through the w3 validator with no errors.

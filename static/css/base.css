@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 html {
     height: 100%;
 }
@@ -12,9 +19,15 @@ body {
 
 /* from Bulma */
 .icon {
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
 }
@@ -27,11 +40,21 @@ body {
 }
 
 .transition-example {
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
+    -webkit-transition-property: all;
+    -o-transition-property: all;
     transition-property: all;
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in-out;
-    transition-delay: 0s;
+    -webkit-transition-duration: 0.5s;
+         -o-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-in-out;
+         -o-transition-timing-function: ease-in-out;
+            transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0s;
+         -o-transition-delay: 0s;
+            transition-delay: 0s;
 }
 
 .logo-font {
@@ -39,6 +62,8 @@ body {
 }
 
 .main-logo-link {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
 }
 
@@ -85,7 +110,7 @@ body {
 }
 
 .text-shadow {
-    text-shadow: 2 2 black !important;
+    text-shadow: 2px 2px black !important;
 }
 
 .border-black {
@@ -123,6 +148,22 @@ a.category-badge > span.badge:hover {
 .update-link,
 .remove-item {
     cursor: pointer;
+}
+
+input[name='q']::-webkit-input-placeholder {
+    color: #aab7c4;
+}
+
+input[name='q']::-moz-placeholder {
+    color: #aab7c4;
+}
+
+input[name='q']:-ms-input-placeholder {
+    color: #aab7c4;
+}
+
+input[name='q']::-ms-input-placeholder {
+    color: #aab7c4;
 }
 
 input[name='q']::placeholder {
@@ -223,6 +264,22 @@ input[name='q']::placeholder {
     display: none;
 }
 
+.allauth-form-inner-content input::-webkit-input-placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content input::-moz-placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content input:-ms-input-placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content input::-ms-input-placeholder {
+    color: #aab7c4;
+}
+
 .allauth-form-inner-content input::placeholder {
     color: #aab7c4;
 }
@@ -247,7 +304,11 @@ input[name='q']::placeholder {
     border-radius: 0;
 
     /* standard bootstrap btn transitions */
+    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
 }
 
 .allauth-form-inner-content button:hover,

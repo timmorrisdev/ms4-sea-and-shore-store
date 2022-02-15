@@ -35,9 +35,9 @@
     <!-- Add product variation Form -->
     <div class="row">
         <div class="col-12 col-md-6">
-            <span>
-                <p> <strong>{{ product.name }}</strong></p>
-            </span>
+
+            <p> <strong>{{ product.name }}</strong></p>
+
             <form method="POST" action="{% url 'add_product_variation' product.id %}" class="form mb-2"
                 enctype="multipart/form-data">
                 {% csrf_token %}
@@ -61,9 +61,9 @@
                         Product</a>
                     <button class="btn btn-black rounded-0" type="submit">Add Product Variation</button>
                 </div>
+            </form>
 
         </div>
-        </form>
 
         <!-- Current product variations section -->
         <div class="col-12 col-md-6">
