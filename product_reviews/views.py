@@ -124,10 +124,13 @@ def update_product_rating(product):
     reviews = ProductReview.objects.all()
     product_reviews = reviews.filter(product=product)
 
-    total = 0
-    for i in product_reviews:
-        total += i.rating
+    new_rating = 1
 
-    new_rating = round(total / len(product_reviews), 2)
+    if product_reviews:
+        total = 0
+        for i in product_reviews:
+            total += i.rating
+
+        new_rating = round(total / len(product_reviews), 2)
     product.rating = new_rating
     product.save()
