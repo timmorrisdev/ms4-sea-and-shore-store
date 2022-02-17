@@ -110,6 +110,27 @@ class TestProductViews(TestCase):
         response = self.client.get(self.add_product_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/add_product.html')
+    
+    def test_add_product_POST_form_valid(self):
+
+        # superuser login
+        self.client.login(username="testsuper", password="supertestpassword")
+        # self.client.force_login(self.super_user)
+
+        # test response
+        # response = self.client.post(self.add_product_url, {
+        #     'code': '5678',
+        #     'name': 'test_product2',
+        #     'description': 'this is a product2',
+        #     'has_variations': True,
+        #     'price': 12.34,
+        #     'brand': 'brand',
+        #     'category': self.category1
+        # })
+
+        # product = Product.objects.get(name='test_product2')
+        # print(product)
+        # print(response)
 
     def test_edit_product_GET_not_superuser(self):
 
