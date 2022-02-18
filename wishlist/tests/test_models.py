@@ -1,10 +1,12 @@
 from django.test import TestCase, Client
 
-from wishlist.models import UserWishlist
 from django.contrib.auth.models import User
 
+from wishlist.models import UserWishlist
 
-class TestProductModels(TestCase):
+
+
+class TestWishlistModels(TestCase):
     '''Test wishlist model'''
 
     def test_wishlist_model(self):
