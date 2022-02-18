@@ -47,6 +47,7 @@ class ProductList(ListView):
 
         # return queryset for product navigation by brand
         if 'brand' in self.request.GET:
+            print('brand arrival')
             brand = self.request.GET['brand']
             queryset = Product.objects.filter(brand__icontains=brand)
 
@@ -132,7 +133,7 @@ class EditProduct(SuperUserRequiredMixin, UpdateView):
         return super().get(request, *args, **kwargs)
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Failed to add product. \
+        messages.error(self.request, 'Failed to edit product. \
                                       Please ensure the form is valid.')
         return super().form_invalid(form)
 
@@ -197,6 +198,12 @@ class EditProductVariation(SuperUserRequiredMixin, UpdateView):
     model = ProductVariations
     form_class = VariationForm
     template_name = 'products/edit_product_variation.html'
+
+    def get_product(self):
+        ''' Class function to return current product
+            object to be returned in the context '''
+        product = Product.objects.get(pk=self.object.product.id)
+        return product
 
     def get(self, request, *args, **kwargs):
         variation = self.get_object()
