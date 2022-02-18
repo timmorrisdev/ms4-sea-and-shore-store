@@ -253,7 +253,7 @@ class TestProductViews(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), f'You are editing {self.product1.name}')
-    
+
     def test_edit_product_post_form_valid(self):
         '''test add product post request'''
 
