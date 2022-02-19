@@ -8,7 +8,17 @@ from .models import ProductReview
 from .forms import ProductReviewForm
 
 
+# def get_product(product_id):
+#     ''' get product'''
+
+#     def decorator(*args, **kwargs):
+#         def wrapper(*args, **kwargs):
+#             print(product_id)
+#         return wrapper
+#     return decorator
+
 @login_required
+# @get_product
 def add_product_review(request, product_id):
     """ Add a review and rating to the product """
 
