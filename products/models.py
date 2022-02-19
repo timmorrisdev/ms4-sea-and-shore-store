@@ -44,6 +44,14 @@ class Product(models.Model):
         ''' Override default object name return '''
         return self.name
 
+    def update_product_rating(self, new_rating):
+        '''
+        Update product rating with review change
+        Called from signals.py
+        '''
+        self.rating = new_rating
+        self.save()
+
     class Meta:
         '''class to determine default ordering of products'''
         ordering = ('name',)

@@ -25,7 +25,6 @@ def add_product_review(request, product_id):
             review.reviewer = request.user
             review.product = product
             review.save()
-            update_product_rating(product)
             messages.success(request, 'Successfully added product review!')
             return redirect(reverse('product_detail', args=[product_id]))
         else:
@@ -68,7 +67,6 @@ def edit_product_review(request, review_id):
                 review.reviewer = request.user
                 review.product = product
                 review.save()
-                update_product_rating(product)
                 messages.success(request,
                                  'Successfully updated product review!')
                 return redirect(reverse('product_detail', args=[product.id]))
@@ -109,28 +107,9 @@ def delete_product_review(request, review_id):
 
     if review.reviewer == request.user:
         review.delete()
-        update_product_rating(product)
 
         messages.success(request, 'Successfully deleted product review!')
         return redirect(reverse('product_detail', args=[product.id]))
     else:
         messages.error(request, "Sorry, you don't have permission do that.")
         return redirect(reverse('home'))
-
-
-def update_product_rating(product):
-    '''update product rating'''
-
-    reviews = ProductReview.objects.all()
-    product_reviews = reviews.filter(product=product)
-
-    new_rating = 1
-
-    if product_reviews:
-        total = 0
-        for i in product_reviews:
-            total += i.rating
-
-        new_rating = round(total / len(product_reviews), 2)
-    product.rating = new_rating
-    product.save()
