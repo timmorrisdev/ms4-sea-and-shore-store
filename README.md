@@ -9,6 +9,14 @@
 
 [See the live site here!](https://sea-and-shore-store.herokuapp.com/)
 
+This website is for educational purposes and checkout functionality is set up to accept stripe test card details. Please don't enter your personal card details.
+
+To process a test stripe payment at checkout, please use the following details.
+
+- card number : 4242 4242 4242 4242
+- Any date
+- Any CVV number
+
 ___
 # User Experience (UX)
 
@@ -36,20 +44,11 @@ ___
 - As a registered user, I should be able to rate and leave reviews for products on the site.
 - As a registered user, I should be able to contact the business owner with any queries I might have.
 
-### Future Dev
-
-- As a registered user, I should be able to read about the latest products being tested by the business team on the blog.
-- As a registered user, I should be able to leave comments on the blog posts to offer my opinions / advice to other users of the website. 
-- As a registered user, I should be able to have products recommended to me based on my order history.
-
 ### Admin
 
 - As an admin user, I should be able to add, edit and delete items from the product range.
 - As an admin user, I should have access to an admin section to see details of users and orders.
 - As an admin user, I should be able to offer incentive to make larger purchases by offering free delivery over a set amount.
-
-- As an admin user, I should be able to interact with my frequent customers using the blog and comments section and offer advice and real-world testing of selected products in the store.
-
 
 
 ## Design
@@ -269,6 +268,11 @@ This is a diagram of the database show the relations between each model. It was 
 - Adaptive to modify content shown to be appropriate for user device or screen size.
 
 ### Future Development Opportunities
+
+- A blog to allow the business owner to publish posts about real-world product testing and to be able to interact with customers via a comments section.
+
+- For the admin to be able to offer 'recommended products' to registered users based on past purchases in their order history.
+
 
 ___
 # Technologies Used
@@ -730,58 +734,95 @@ I ran lighthouse testing across each area of the site. The results and details o
 ### Unregistered user goals
 - As an unregistered user, I should be able to see what the store is selling and easily understand the kind of products on offer.
     - The home page clearly outlines the type of product range availble to the customer via the category menu headings, the store name, and store 'ethos' heading.
+
+        ![User Story 1](readme_assets/user_story_images/1_ethos.png)
+
     - The hero image gives a clear idea to the user the ethos of the store.
+
+        ![User Story 2](readme_assets/user_story_images/2_hero_image.jpg)
 
 - As an unregistered user, I should be able to navigate through the website easily to explore the different features.
     - Features and areas of the site are clearly labelled throughout with the assistance of recognised icons to represent different features and links.
 
+        ![User Story 3](readme_assets/user_story_images/3_features_of_site.png)
+
 - As an unregistered user, I should be able to navigate through all the products sold in the store using clear and intuitive menus and categories.
     - Categories are clearly laid out.
-    - Product results easily re-ordered to meet the users needs.
+
+        ![User Story 4](readme_assets/user_story_images/4_categories.png)
 
 - As an unregistered user, I should be able to search the product range.
     - Search functionality available from any location on the site.
 
+        ![User Story 5](readme_assets/user_story_images/5_search.png)
+
 - As an unregistered user, I should be able to sort any product results by price, rating, or brand.
     - The sort dropdown on the products page allows for users to order products.
-    - Individual brands can be browsed using the main navigation dropdown.
+
+        ![User Story 6](readme_assets/user_story_images/6_sort.png)
+
+    - Individual brands can be browsed using the main navigation dropdown.\
+
+        ![User Story 7](readme_assets/user_story_images/7_brands.png)
 
 - As an unregistered user, I should be able to add items to my basket and receive real-time, useful feedback when I interact with the website.
     - Adding items to the basket can be done as an unregisterd user.
+
+        ![User Story 8](readme_assets/user_story_images/8_bag.png)
+
     - Message 'toasts' are displayed whenever there is meaningful user interaction with the site.
+
+        ![User Story 9](readme_assets/user_story_images/9_toast.png)
 
 - As an unregistered user, I should be able to edit the items in my basket and receive feedback when something has changed.
     - The bag page allows users to edit quantity or remove items from shopping bag.
 
+        ![User Story 10](readme_assets/user_story_images/10_qty.png)
+
 - As an unregistered user, I should be able to check out as a guest user of the website.
     - Unregistered users are able to checkout and complete a purchase.
+
+        ![User Story 11](readme_assets/user_story_images/11_checkout.png)
 
 - As an unregistered user, I should be able to receive email confirmation of my order. 
     - Automated emails are sent to the user-provided address upon checking out.
 
 - As an unregistered user, I should be able to sign up and store my information to a personal profile in order to streamline future visits.
     - User registration available throughout the site.
+
+        ![User Story 12](readme_assets/user_story_images/12_register.png)
+
     - Prompt via checkbox to store user information on checkout.
+
+        ![User Story 13](readme_assets/user_story_images/13_prompt.png)
 
 ### Registered user goals
 
 - As a registered user, I should be able to log in to my profile to make my experience more personal.
     - Users can log in and view their profile.
 
+        ![User Story 14](readme_assets/user_story_images/14_profile.png)
+
 - As a registered user, I should be able save items to a wish-list for future purchase consideration. 
     - Wishlist status of items clear displayed for each product and wishlist creation is automatic upon user input.
+
+        ![User Story 15](readme_assets/user_story_images/15_wishlist.png)
 
 - As a registered user, I should be able to edit my default delivery and payment information. 
     - User can edit information on their profile page. 
 
+        ![User Story 16](readme_assets/user_story_images/16_update.png)
+
 - As a registered user, I should be able to see and review my past orders.
     - Past orders are displayed on the user profile page.
+
+        ![User Story 17](readme_assets/user_story_images/17_order_history.png)
 
 - As a registered user, I should be able to rate and leave reviews for products on the site.
     - Product ratings are clearly displayed and leaving a review for a proudct is available to any user who is logged in.
 
-- As a registered user, I should be able to contact the business owner with any queries I might have.
-    - Future dev?
+        ![User Story 18](readme_assets/user_story_images/18_reviews.png)
+
 
 ### Admin user goals
 
@@ -825,6 +866,8 @@ ___
     - [Just Django Class Based views](https://www.youtube.com/watch?v=S1wMmFFefRM)
     - [Coding Point ecommerce walkthrough](https://www.youtube.com/watch?v=UjisbVs6gww)
     - [Dennis Ivanov Class Based views](https://www.youtube.com/watch?v=RE0HlKch_3U)
+    - [Corey Schafer Decorators](https://www.youtube.com/watch?v=FsAPt_9Bf3U)
+    - [Very Academy automation testing series](https://www.youtube.com/watch?v=swEjbCW9XDY)
 - [Stack Overflow](https://stackoverflow.com/) was used extensively when problem solving. Specifically the following threads.
     - [Check if image url exists](https://stackoverflow.com/questions/10543940/check-if-a-url-to-an-image-is-up-and-exists-in-python)
     - [Add wishlist](https://stackoverflow.com/questions/56580696/how-to-implement-add-to-wishlist-for-a-product-in-django)

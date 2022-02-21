@@ -50,7 +50,7 @@ class TestProductViews(TestCase):
         # urls
         self.add_product_review_url = reverse('add_product_review', kwargs={'product_id':self.product.id})
         self.edit_product_review_url = reverse('edit_product_review', kwargs={'product_id': self.product.id, 'review_id':self.review.id})
-        self.delete_product_review_url = reverse('delete_product_review', kwargs={'product_id': self.product.id, review_id':self.review.id})
+        self.delete_product_review_url = reverse('delete_product_review', kwargs={'product_id': self.product.id, 'review_id':self.review.id})
 
     def test_add_product_review_get_not_user(self):
         '''test add product review get request no user login'''
