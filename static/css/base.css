@@ -67,6 +67,11 @@ body {
     width: fit-content;
 }
 
+a.nav-link {
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
+}
+
 .shop-now-button {
     background: black;
     color: white;
@@ -376,6 +381,11 @@ input[name='q']::placeholder {
     .container {
       max-width: 80%;
     }
+
+    a.nav-link {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
   }
   
   /* fixed top navbar only on medium and up */
@@ -391,6 +401,7 @@ input[name='q']::placeholder {
       .header-container {
           padding-top: 164px;
       }
+
   }
 
 /* pad the top a bit when navbar is collapsed on mobile */
@@ -401,5 +412,20 @@ input[name='q']::placeholder {
 
     body {
         height: calc(100vh - 116px);
+    }
+}
+
+/* stop mobile nav bar from wrapping to two lines */
+@media (max-width: 430px) {
+    a.nav-link {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+}
+
+@media (max-width: 355px) {
+    a.nav-link {
+        padding-left: 0.2rem !important;
+        padding-right: 0.2rem !important;
     }
 }
