@@ -200,7 +200,7 @@
                         <!-- Edit and delete if user is review author -->
                         {% if user == review.reviewer %}
                         <small class="ml-3">
-                            <a href="{% url 'edit_product_review' review.id %}">Edit</a> |
+                            <a href="{% url 'edit_product_review' product.id review.id %}">Edit</a> |
                             <a href="#" class="text-danger" data-toggle="modal"
                                 data-target="#deleteReview{{ review.id }}Modal">Delete</a>
                         </small>
@@ -237,7 +237,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-black rounded-0"
                                 data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-danger" href="{% url 'delete_product_review' review.id %}"
+                            <a class="btn btn-danger" href="{% url 'delete_product_review' product.id review.id %}"
                                 id="{{ review.id }}">Yes,
                                 Delete</a>
                         </div>
