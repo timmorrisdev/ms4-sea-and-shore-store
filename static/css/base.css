@@ -72,6 +72,11 @@ a.nav-link {
     padding-right: 0.2rem !important;
 }
 
+.nav-item .dropdown-menu {
+    max-height: 300px !important;
+    overflow: scroll;
+}
+
 .shop-now-button {
     background: black;
     color: white;
