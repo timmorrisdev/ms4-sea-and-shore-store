@@ -5,7 +5,7 @@
 
 # Project Synopsis
 
-'Sea and Shore' is an e-commerce store focusing on watersports and outdoor pursuits equipment and clothing. The aim of the store is to encourage people to experience the great outdoors both safely and conveniently, all whilst keeping up-to-date with the lastest fashions and trends. 
+'Sea and Shore' is an e-commerce store focusing on watersports and outdoor pursuits equipment and clothing. The aim of the store is to encourage people to experience the great outdoors both safely and conveniently, all whilst keeping up-to-date with the latest fashions and trends. 
 
 [See the live site here!](https://sea-and-shore-store.herokuapp.com/)
 
@@ -70,7 +70,7 @@ ___
 
 
 ### Fonts
-- I chose Montserrat from google fonts for the site as it gives good readability and has a modern asthetic.
+- I chose Montserrat from google fonts for the site as it gives good readability and has a modern aesthetic.
 
 
 ## Data Models and Schema
@@ -142,7 +142,7 @@ This is a diagram of the database show the relations between each model. It was 
     ![Product Summary Card](readme_assets/features_screengrabs/products_page/product_summary.png)
 
 - Search Result Feedback
-    - The user is provieded detail of how many products they are currently viewing based on their criteria.
+    - The user is provided detail of how many products they are currently viewing based on their criteria.
 
     ![Search Results Feedback](readme_assets/features_screengrabs/products_page/search_result_feedback.png)
 
@@ -152,7 +152,7 @@ This is a diagram of the database show the relations between each model. It was 
     ![Sort Selector](readme_assets/features_screengrabs/products_page/sort_dropdown.png)
 
 - Pagination
-    - This area of the site uses the pagination feature included in the ListView clas based view in Django. It allows the user to navigate their search results in a more manageable way.
+    - This area of the site uses the pagination feature included in the ListView class based view in Django. It allows the user to navigate their search results in a more manageable way.
 
     ![Pagination](readme_assets/features_screengrabs/products_page/pagination.png)
 
@@ -163,7 +163,7 @@ This is a diagram of the database show the relations between each model. It was 
     - Provides the user with a detailed overview of the specific product. 
     - Product rating uses the average of any ratings issued in product reviews and is calculated in the product review app views.
     - Includes the buttons and menus for the user to select a specific size (if applicable) and add a defined quantity of the item to the shopping bag.
-    - 'Star' icon informs the user if the proudct is in their wishlist and acts as a toggle button to add / remove it to the wishlist.
+    - 'Star' icon informs the user if the product is in their wishlist and acts as a toggle button to add / remove it to the wishlist.
 
     ![Product Detail Section](readme_assets/features_screengrabs/product_detail_page/product_details_section.png)
 
@@ -176,7 +176,7 @@ This is a diagram of the database show the relations between each model. It was 
 
 - Add Product Review
     - If the user is logged in and has clicked to add a review to a product, the following form page will be displayed. 
-    - The same form is displayed for a user to edit a review, pre-popluated with the review data being edited.
+    - The same form is displayed for a user to edit a review, pre-populated with the review data being edited.
 
     ![Add Review Page](readme_assets/features_screengrabs/add_review_page/add_review_page.png)
 
@@ -203,7 +203,7 @@ This is a diagram of the database show the relations between each model. It was 
     ![Order Confirmation](readme_assets/features_screengrabs/checkout_page/order_confirmation.png)
 
 - User Profile
-    - Displays the users default infomation to be pre-populated at checkout and offers the ability to edit.
+    - Displays the users default information to be pre-populated at checkout and offers the ability to edit.
     - Order history gives an overview of any orders placed. User can click an order to display the order confirmation for the past order.
 
     ![User Profile Page](readme_assets/features_screengrabs/profile_page/profile_page.png)
@@ -218,8 +218,8 @@ This is a diagram of the database show the relations between each model. It was 
     ![No Wishlist Items](readme_assets/features_screengrabs/wishlist_page/no_items.png)
 
 - Admin Product Management
-    - Add prodict form for admin to input a new product to the store.
-    - If 'has variations' is selected, sumbitting the form will redirect the admin to add variations of the product.
+    - Add product form for admin to input a new product to the store.
+    - If 'has variations' is selected, submitting the form will redirect the admin to add variations of the product.
 
     ![Add Product Form](readme_assets/features_screengrabs/product_management/add_product.png)
 
@@ -302,7 +302,7 @@ ___
 ## Frameworks, Libraries & Programs Used
 
 - [jQuery](https://jquery.com/)
-    - jQuery was used across the site when additional steps were needed to pass appropriate data to the back end, as well as when overridng some of the default behaviours and styling of django elements
+    - jQuery was used across the site when additional steps were needed to pass appropriate data to the back end, as well as when overriding some of the default behaviours and styling of django elements
     - jQuery was also used as part of Bootstrap and is used for Javascript plugins such as the modals.
 
 - [Heroku](https://www.heroku.com/)
@@ -348,7 +348,7 @@ The following steps were taken throughout the project to achieve deployment of t
 
 ## Create Github Repository
 
-- The repository was created using the green 'new' button on [Github](https://github.com/) and selecting the Code Institute Full Tempalte from the dropdown menu. 
+- The repository was created using the green 'new' button on [Github](https://github.com/) and selecting the Code Institute Full Template from the dropdown menu. 
 - Once created I was able to open the repository in Gitpod using the installed extension. From this point on, the command line in Gitpod was used for version control with git add, commit and push commands.
 
 
@@ -372,7 +372,7 @@ Note: This step will be repeated when deploying to Heroku and migrating the data
     ```
     python3 manage.py createsuperuser
     ```
-- Install apps to impliment site features.
+- Install apps to implement site features.
 
     ```
     python3 manage.py startapp [app_name]
@@ -387,7 +387,7 @@ In order to deploy the app via [heroku](https://dashboard.heroku.com/apps), the 
 
 - Assign an app name and region and hit 'create app'.
 
-- Navigate to the resourses tab from the app dashboard, search for Postgres and select to add to the project.
+- Navigate to the resources tab from the app dashboard, search for Postgres and select to add to the project.
 
 ### Django
 
@@ -427,7 +427,7 @@ In order to deploy the app via [heroku](https://dashboard.heroku.com/apps), the 
         }
     ```
 
-- Create fixtures files to be installed in the new database. FOr my project I required data already added for the Product, Category and ProductVariation models.
+- Create fixtures files to be installed in the new database. For my project I required data already added for the Product, Category and ProductVariation models.
     ```
 
         python3 manage.py dumpdata products.Product > products.json
@@ -442,7 +442,7 @@ In order to deploy the app via [heroku](https://dashboard.heroku.com/apps), the 
     python3 manage.py migrate
     ```
 
-- Use the created fixtures files to add the product data to the database. Note that the order is important to allow model relationships to be made corectly.
+- Use the created fixtures files to add the product data to the database. Note that the order is important to allow model relationships to be made correctly.
 
     ``` 
     python3 manage.py loaddata category
@@ -536,7 +536,7 @@ Amazon Web Services was used to host the static files and media files for the si
         - Copy the 'arn' from the edit bucket policy page and paste into the Amazon Resource Name (ARN) field.
         - Click 'add statement'
         - Click generate policy and copy the code.
-        - Paste the code into the policy field in the edit bucket policy section, adding a '/*' to the recource line.
+        - Paste the code into the policy field in the edit bucket policy section, adding a '/*' to the resource line.
         - Hit save.
     
 
@@ -555,7 +555,7 @@ Amazon Web Services was used to host the static files and media files for the si
     - Add policy to group.
         - Navigate to the groups menu and select the group.
         - Click 'attach policy', search for the newly-created policy from the previous step.
-        - Selct the policy using the checkbox and click 'attach policy'
+        - Select the policy using the checkbox and click 'attach policy'
     - Create user
         - Select 'users' from the menu and click 'add user'.
         - Name the user and grant programatic access using the checkbox.
@@ -603,7 +603,7 @@ Amazon Web Services was used to host the static files and media files for the si
     ```
     - Add the environment variables 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY' to Heroku with the values found the user CSV file downloaded from the AWS setup.
 
-    - Create custom_storages.py at the top-level of the project and input the locatioons for Django to store the files.
+    - Create custom_storages.py at the top-level of the project and input the locations for Django to store the files.
     ```python
     from django.conf import settings
     from storages.backends.s3boto3 import S3Boto3Storage
@@ -654,7 +654,7 @@ I was also sure to deploy the site to Heroku early in development to allow for r
 ## W3C Markup, CSS Validation & JSHint Validation
 I used the W3C Markup, CSS Validator and JSHint Validator Services to check and validate each page throughout the site to check for errors. 
 ### [Markup Validation Service](https://validator.w3.org/)
-The HTML code on the site passed through the validator showing errors to do with the implimentation of the Django templating language.
+The HTML code on the site passed through the validator showing errors to do with the implementation of the Django templating language.
 
 ### [CSS Validation Service](https://jigsaw.w3.org/css-validator/)
 My CSS files across the site passed through the w3 validator with no errors.
@@ -733,7 +733,7 @@ I ran lighthouse testing across each area of the site. The results and details o
 
 ### Unregistered user goals
 - As an unregistered user, I should be able to see what the store is selling and easily understand the kind of products on offer.
-    - The home page clearly outlines the type of product range availble to the customer via the category menu headings, the store name, and store 'ethos' heading.
+    - The home page clearly outlines the type of product range available to the customer via the category menu headings, the store name, and store 'ethos' heading.
 
         ![User Story 1](readme_assets/user_story_images/1_ethos.png)
 
@@ -766,7 +766,7 @@ I ran lighthouse testing across each area of the site. The results and details o
         ![User Story 7](readme_assets/user_story_images/7_brands.png)
 
 - As an unregistered user, I should be able to add items to my basket and receive real-time, useful feedback when I interact with the website.
-    - Adding items to the basket can be done as an unregisterd user.
+    - Adding items to the basket can be done as an unregistered user.
 
         ![User Story 8](readme_assets/user_story_images/8_bag.png)
 
@@ -829,14 +829,22 @@ I ran lighthouse testing across each area of the site. The results and details o
 - As an admin user, I should be able to add, edit and delete items from the product range.
     - Superusers of the site can access CRUD functionality for products directly via the site, or via the django admin panel.
 
+        ![User Story 19](readme_assets/user_story_images/19_add_product.png)
+
+        ![User Story 20](readme_assets/user_story_images/20_add_product_admin.png)
+
 - As an admin user, I should have access to an admin section to see details of users and orders.
     - Superusers of the site can log in to the django admin panel to see details.
+
+        ![User Story 21](readme_assets/user_story_images/21_full_admin.png)
 
 - As an admin user, I should be able to offer incentive to make larger purchases by offering free delivery over a set amount.
     - A 'free delivery threshold' can be set and clearly displayed to the user.
 
-- As an admin user, I should be able to interact with my frequent customers using the blog and comments section and offer advice and real-world testing of selected products in the store.
-    - Future dev?
+        ![User Story 22](readme_assets/user_story_images/22_site_delivery.png)
+
+        ![User Story 23](readme_assets/user_story_images/23_settings_delivery.png)
+
 
 ## Peer Code Review
 
@@ -860,7 +868,7 @@ ___
 # Credits
 ## Code
 
-- The code and concept for this project is based around the 'Boutique Ado' learning walkthrough project by the Code Insitute.
+- The code and concept for this project is based around the 'Boutique Ado' learning walkthrough project by the Code Institute.
 - The following youtube videos were used as additional learning for aspects of the code.
     - [Very Academy ecommerce wishlist](https://www.youtube.com/watch?v=OgA0TTKAtqQ)
     - [Just Django Class Based views](https://www.youtube.com/watch?v=S1wMmFFefRM)
