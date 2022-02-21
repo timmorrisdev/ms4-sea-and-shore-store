@@ -1,6 +1,9 @@
 from django.shortcuts import (
     render, redirect, reverse
 )
+
+from sea_and_shore.decorators import authenticate_product, authenticate_review
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -25,15 +28,11 @@ class Wishlist(View):
 
 
 @login_required
+@authenticate_product
 def toggle_wishlist(request, product_id):
     ''' Add or remove product to user wishlist'''
 
-    # check if product exists
-    try:
-        product = Product.objects.get(pk=product_id)
-    except Product.DoesNotExist:
-        messages.error(request, 'Product not found.')
-        return redirect(reverse('products'))
+    product = Product.objects.get(pk=product_id)
 
     # check if user has a wushlist in the database, create one if not
     try:

@@ -183,7 +183,7 @@
         <div class="row">
 
             <!-- Iterate through reviews and display in cards -->
-            {% for review in product_reviews %}
+            {% for review in product_reviews reversed %}
 
             <!-- Check for relevant reviews to product -->
             {% if product.name in review.product.name %}
