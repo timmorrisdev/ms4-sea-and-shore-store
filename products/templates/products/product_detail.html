@@ -61,6 +61,9 @@
                 {% else %}
                 <small class="text-muted">No Rating</small>
                 {% endif %}
+                {% if user.is_authenticated %}
+                <small>- <a href="{% url 'add_product_review' product.id %}">Add Review / Rating</a></small>
+                {% endif %}
                 <br>
 
                 <!-- Edit and delete if user is superuser -->
@@ -165,89 +168,90 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Product review section -->
-<div class="row">
-    <div class="col-12 col-lg-8 offset-lg-2 text-center mb-5">
 
-        <!-- Title and review count -->
-        <h2 class="">Reviews({{ product.id|review_count }})</h2>
+    <!-- Product review section -->
+    <div class="row mt-n4">
+        <div class="col-12 col-lg-8 offset-lg-2 text-center mb-5">
 
-        <!-- Add review if user logged in -->
-        {% if user.is_authenticated %}
-        <a href="{% url 'add_product_review' product.id %}">Add Review</a>
-        {% endif %}
+            <!-- Title and review count -->
+            <h2 class="">Reviews({{ product.id|review_count }})</h2>
 
-        <!-- Existing reviews section -->
-        <div class="row">
-
-            <!-- Iterate through reviews and display in cards -->
-            {% for review in product_reviews reversed %}
-
-            <!-- Check for relevant reviews to product -->
-            {% if product.name in review.product.name %}
-            <div class="col-md-6 my-4">
-                <div class="card">
-                    <div class="card-header">
-
-                        <!-- Title -->
-                        <h5 class="card-title">"{{ review.title }}"</h5>
-
-                        <!-- Rating -->
-                        <h6 class="card-subtitle mb-2 text-muted">Rating: {{ review.rating }}</h6>
-
-                        <!-- Edit and delete if user is review author -->
-                        {% if user == review.reviewer %}
-                        <small class="ml-3">
-                            <a href="{% url 'edit_product_review' product.id review.id %}">Edit</a> |
-                            <a href="#" class="text-danger" data-toggle="modal"
-                                data-target="#deleteReview{{ review.id }}Modal">Delete</a>
-                        </small>
-                        {% endif %}
-
-                    </div>
-
-                    <!-- Review -->
-                    <div class="card-body">
-                        <p class="card-text">{{ review.review }}</p>
-                    </div>
-
-                    <!-- Display review author and date of review -->
-                    <div class="card-footer text-muted">
-
-                        {% if review.reviewer %}{{ review.reviewer }}{% else %}Anonymous{% endif %} -
-                        {{ review.date|date:"d M, Y" }}
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- Delete review modal -->
-            <div class="modal fade" id="deleteReview{{ review.id }}Modal" tabindex="-1"
-                aria-labelledby="deleteReview{{ review.id }}ModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content text-black">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Delete Review!</h5>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure? This action cannot be undone!</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-black rounded-0"
-                                data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-danger" href="{% url 'delete_product_review' product.id review.id %}"
-                                id="{{ review.id }}">Yes,
-                                Delete</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Add review if user logged in -->
+            {% if user.is_authenticated %}
+            <a href="{% url 'add_product_review' product.id %}">Add Review</a>
             {% endif %}
-            {% endfor %}
 
+            <!-- Existing reviews section -->
+            <div class="row">
+
+                <!-- Iterate through reviews and display in cards -->
+                {% for review in product_reviews reversed %}
+
+                <!-- Check for relevant reviews to product -->
+                {% if product.name in review.product.name %}
+                <div class="col-md-6 my-4">
+                    <div class="card">
+                        <div class="card-header">
+
+                            <!-- Title -->
+                            <h5 class="card-title">"{{ review.title }}"</h5>
+
+                            <!-- Rating -->
+                            <h6 class="card-subtitle mb-2 text-muted">Rating: {{ review.rating }}</h6>
+
+                            <!-- Edit and delete if user is review author -->
+                            {% if user == review.reviewer %}
+                            <small class="ml-3">
+                                <a href="{% url 'edit_product_review' product.id review.id %}">Edit</a> |
+                                <a href="#" class="text-danger" data-toggle="modal"
+                                    data-target="#deleteReview{{ review.id }}Modal">Delete</a>
+                            </small>
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Review -->
+                        <div class="card-body">
+                            <p class="card-text">{{ review.review }}</p>
+                        </div>
+
+                        <!-- Display review author and date of review -->
+                        <div class="card-footer text-muted">
+
+                            {% if review.reviewer %}{{ review.reviewer }}{% else %}Anonymous{% endif %} -
+                            {{ review.date|date:"d M, Y" }}
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delete review modal -->
+                <div class="modal fade" id="deleteReview{{ review.id }}Modal" tabindex="-1"
+                    aria-labelledby="deleteReview{{ review.id }}ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-black">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete Review!</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure? This action cannot be undone!</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-black rounded-0"
+                                    data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-danger" href="{% url 'delete_product_review' product.id review.id %}"
+                                    id="{{ review.id }}">Yes,
+                                    Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 </div>

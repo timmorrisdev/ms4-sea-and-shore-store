@@ -293,10 +293,12 @@ ___
 - [Django Countries](https://pypi.org/project/django-countries/)
     - Django Countries was used for formatting of the 'Country' field in the checkout form and in the default user info within the profile section.
 
--[Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
+- [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
     - Used to format the default django form fields across the site.
 
+
 - [Django Coverage](https://pypi.org/project/django-coverage/)
+    - Used to monitor coverage of automation testing written for the product, product_review and wishlist apps.
 
 
 ## Frameworks, Libraries & Programs Used
@@ -664,6 +666,26 @@ My JavaScript files across the site passed through the validator with no errors.
 
 ### [PEP8 check](http://pep8online.com/)
 Across the site, the code is PEP8 compliant.
+
+## Automation Unit Testing
+Due to time restrictions, automation unit tests were written for select apps within the project.
+
+The following areas of the application were tested abd Django Coverage was used to ensure all code was included.
+
+- Products app.
+    - models.py
+    - views.py
+    - urls.py
+
+- Product Reviews app.
+    - models.py
+    - views.py
+    - urls.py
+
+- Wishlist app.
+    - models.py
+    - views.py
+    - urls.py
 
 ## Lighthouse Testing
 
