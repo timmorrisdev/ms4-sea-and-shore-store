@@ -30,7 +30,8 @@
             {% if bag_items %}
 
             <!-- Bag details - Small screens only -->
-            <div class="d-block d-md-none">
+
+            <div class="d-block d-md-none mobile-bag-container">
                 <div class="row">
                     <div class="col">
                         {% include "bag/bag-total.html" %}
@@ -158,6 +159,10 @@
                 location.reload();
             });
     })
+
+    $('.btt-link').click(function (e) {
+        window.scrollTo(0, 0);
+    });
 </script>
 
 {% endblock %}

@@ -258,6 +258,7 @@ input[name='q']::placeholder {
     background: #ffffffeb;
     padding: 1rem 1rem;
     border: black solid 1px;
+    margin-top: 50px;
 }
 
 .allauth-form-inner-content p {
@@ -332,7 +333,7 @@ input[name='q']::placeholder {
 	color: #17a2b8; /* text-info */
 }
 
-/* Product Form */
+/* -------------------------------- Product Form */
 
 .btn-file {
     position: relative;
@@ -377,6 +378,12 @@ input[name='q']::placeholder {
 
 .nav-wrapper {
     border: none;
+}
+
+/* -------------------------------- Bag Page */
+
+.mobile-bag-container {
+    padding-bottom: 50px;
 }
 
 /* -------------------------------- Media Queries */

@@ -82,37 +82,38 @@
 
             <!-- Pagination copied from django documentation and modified with bootstrap classes -->
             <!-- Page links modified to maintain current product context -->
-            <div class="row">
-                <div class="col-12">
+            <div class="row tex">
+                <div class="col-12 d-flex justify-content-center justify-content-md-start">
 
-                    <nav aria-label="Page navigation example">
+                    <nav aria-label="Page navigation example text-center">
                         <ul class="pagination" class="text-black">
 
                             {% if page_obj.has_previous %}
                             <li class="page-item">
                                 <a class="page-link btn btn-outline-black rounded-0"
                                     href="?{% if search_term %}q={{ search_term }}{% endif %}&{% if current_category %}&category={{ current_category }}{% endif%}&sort={{ current_sorting }}&page=1">&laquo;
-                                    first</a>
+                                    <small class="d-none d-md-inline-block">first</small></a>
                             </li>
                             <li class="page-item">
                                 <a class="page-link btn btn-outline-black rounded-0"
-                                    href="?{% if search_term %}q={{ search_term }}{% endif %}&{% if current_category %}&category={{ current_category }}{% endif%}&sort={{ current_sorting }}&page={{ page_obj.previous_page_number }}">previous</a>
+                                    href="?{% if search_term %}q={{ search_term }}{% endif %}&{% if current_category %}&category={{ current_category }}{% endif%}&sort={{ current_sorting }}&page={{ page_obj.previous_page_number }}"><small>prev</small></a>
                             </li>
                             {% endif %}
                             <li class="page-item disabled ">
-                                <div class="page-link btn btn-black rounded-0">Page {{ page_obj.number }}
-                                    of
-                                    {{ page_obj.paginator.num_pages }}.
+                                <div class="page-link btn btn-black rounded-0"><small>Page {{ page_obj.number }} <span
+                                            class="d-none d-md-inline-block">of
+                                            {{ page_obj.paginator.num_pages }}</small>
                                 </div>
                             </li>
                             {% if page_obj.has_next %}
                             <li class="page-item">
                                 <a class="page-link btn btn-outline-black rounded-0"
-                                    href="?{% if search_term %}q={{ search_term }}{% endif %}&{% if current_category %}&category={{ current_category }}{% endif%}&sort={{ current_sorting }}&page={{ page_obj.next_page_number }}">next</a>
+                                    href="?{% if search_term %}q={{ search_term }}{% endif %}&{% if current_category %}&category={{ current_category }}{% endif%}&sort={{ current_sorting }}&page={{ page_obj.next_page_number }}"><small>next</small></a>
                             </li>
                             <li class="page-item">
                                 <a class="page-link btn btn-outline-black rounded-0"
-                                    href="?{% if search_term %}q={{ search_term }}{% endif %}&{% if current_category %}&category={{ current_category }}{% endif%}&sort={{ current_sorting }}&page={{ page_obj.paginator.num_pages }}&ordering={{ current_sorting }}">last
+                                    href="?{% if search_term %}q={{ search_term }}{% endif %}&{% if current_category %}&category={{ current_category }}{% endif%}&sort={{ current_sorting }}&page={{ page_obj.paginator.num_pages }}&ordering={{ current_sorting }}"><small
+                                        class="d-none d-md-inline-block">last</small>
                                     &raquo;</a>
                             </li>
                             {% endif %}
