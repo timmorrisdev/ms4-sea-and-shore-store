@@ -870,6 +870,39 @@ I ran lighthouse testing across each area of the site. The results and details o
 
 ## Peer Code Review
 
+I posted this project on the Code Institute 'peer-code-review' channel and also to a London coders group comprised of both students and Code Institute alumni.
+
+The followiung issues were raised.
+
+- Pagination navigation styling on smaller devices.
+
+    - Buttons sizing inconsistent when content wrapping to multiple lines.
+
+        ![pagination problem](readme_assets/peer_review/pagination_problem.png)
+    
+    - Issue resolved using HTML. Content wrapped in 'small' tags and some words hidden on smaller screen while functionality still remaining clear to the user.
+
+        ![pagination solution](readme_assets/peer_review/pagination_solution.png)
+
+- 'Back to top' button not functioning on checkout page.
+
+    - Button overlapping with product quantity links, causing the button not to function.
+
+        ![back to top problem](readme_assets/peer_review/back_to_top_problem.png)
+    
+    - Issue resolved using CSS to add padding the container holding the product overview and allow the buttons spacing to function as expected.
+
+        ![back to top solution](readme_assets/peer_review/back_to_top_solution.png)
+
+- Allauth user account interaction area obscured.
+
+    - Login, logout, register input sections were obscured by the top nav section.
+
+        ![allauth problem](readme_assets/peer_review/allauth_problem.png)
+    
+    - Issue resolved using CSS to add top margin to the container displaying the account sections.
+
+        ![allauth solution](readme_assets/peer_review/allauth_solution.png)
 
 ## Cross-Browser/Device Testing
 I tested the site across multiple devices using different browsers.
