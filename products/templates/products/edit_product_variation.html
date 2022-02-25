@@ -38,7 +38,7 @@
             <span>
                 <p> <strong>{{ product.name }}</strong></p>
             </span>
-            <form method="POST" action="{% url 'add_product_variation' product.id %}" class="form mb-2"
+            <form method="POST" action="{% url 'edit_product_variation' variation.id %}" class="form mb-2"
                 enctype="multipart/form-data">
                 {% csrf_token %}
 

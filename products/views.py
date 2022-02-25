@@ -214,6 +214,7 @@ class EditProductVariation(SuperUserRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['product'] = Product.objects.get(pk=self.object.product.id)
+        context['variation'] = self.get_object()
         return context
 
     def form_invalid(self, form):
