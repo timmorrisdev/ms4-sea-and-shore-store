@@ -47,7 +47,6 @@ class ProductList(ListView):
 
         # return queryset for product navigation by brand
         if 'brand' in self.request.GET:
-            print('brand arrival')
             brand = self.request.GET['brand']
             queryset = Product.objects.filter(brand__icontains=brand)
 

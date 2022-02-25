@@ -28,10 +28,7 @@ class VariationForm(forms.ModelForm):
 
     class Meta:
         model = ProductVariations
-        fields = ('category', 'name', 'price')
-
-    image = forms.ImageField(label='Image', required=False,
-                             widget=CustomClearableFileInput)
+        fields = ('category', 'name')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

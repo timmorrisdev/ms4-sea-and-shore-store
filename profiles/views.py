@@ -37,17 +37,6 @@ def profile(request):
     return render(request, template, context)
 
 
-# @login_required
-# def delete_profile(request):
-#     # print(request.user.id)
-#     profile = get_object_or_404(User, pk=request.user.id)
-#     # print(profile)
-#     profile.delete()
-#     messages.success(request, 'Profile deleted successfully')
-
-#     return render(request, 'home/index.html')
-
-
 def order_history(request, order_number):
     ''' view to display previous order confirmation page'''
 

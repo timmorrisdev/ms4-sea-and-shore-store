@@ -64,15 +64,10 @@ class ProductVariationManager(models.Manager):
         '''return Product objects with size variations'''
         return super(ProductVariationManager, self).filter(category='size')
 
-    def colours(self):
-        '''return Product objects with colour variations'''
-        return super(ProductVariationManager, self).filter(category='colour')
-
 
 # Variable of tuples to define category choices in variation model
 VARIATION_CATEGORIES = (
     ('size', 'size'),
-    ('colour', 'colour')
 )
 
 
