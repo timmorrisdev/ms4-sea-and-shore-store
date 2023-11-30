@@ -7,7 +7,9 @@
 
 'Sea and Shore' is an e-commerce store focusing on watersports and outdoor pursuits equipment and clothing. The aim of the store is to encourage people to experience the great outdoors both safely and conveniently, all whilst keeping up-to-date with the latest fashions and trends. 
 
-[See the live site here!](https://sea-and-shore-store.herokuapp.com/)
+[//]: # ([See the live site here!]&#40;https://sea-and-shore-store.herokuapp.com/&#41;)
+
+SITE NOT DEPLOYED SINCE STUDENT HEROKU ACCOUNT LAPSE - LOCAL DEMO ON REQUEST
 
 This website is for educational purposes and checkout functionality is set up to accept stripe test card details. Please don't enter your personal card details.
 
